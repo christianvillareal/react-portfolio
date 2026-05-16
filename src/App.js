@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+
+//Import Core UI and Bootsrap
+import '@coreui/coreui/dist/css/coreui.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+//Import Global Styles
+import './css/Global.module.css';
+
+//Import Components
+import Header from './components/Header';
+import TopFold from './components/TopFold';
+import Services from './components/Services';
+import Projects from './components/Projects';
+import Experience from './components/Experience';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <TopFold />
+      
+      <section id='gradient'>
+          <Services />
+          <Projects />
+          <Experience />
+      </section>
+
     </div>
   );
 }

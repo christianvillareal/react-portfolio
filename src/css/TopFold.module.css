@@ -1,0 +1,109 @@
+.sub {
+    color: #000;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.title {
+    color: #0C4A6E;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.body {
+    color: #616161;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 36px;
+}
+
+.whiteBox  {
+    border-radius: 20px;
+    border: 1px solid #D1D4E0;
+    background: #FFF;
+    box-shadow: 0px 20px 34px 0px rgba(0, 0, 0, 0.12);
+    width: 370px;
+    padding: 17px 25px;
+    position: relative;
+    margin-bottom: -184px;
+    bottom: -300px;
+}
+
+.fiveStar  {
+    color: #0C4A6E;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+}
+
+.subTitle {
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: left;
+}
+
+.quote {
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+}
+
+.belowTitle {
+    color: #0C4A6E;
+    font-size: 100px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+}
+
+.belowBody {
+    color: #616161;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 36px;
+}
+
+@media screen and (max-width: 768px) {
+    .sub {
+        font-size: 25px;
+    }
+    .title {
+        font-size: 32px;
+    }
+    .body {
+        font-size: 18px;
+        line-height: 23px;
+    }
+    .whiteBox {
+        margin-bottom: -154px;
+        bottom: -380px;
+        max-width: 100%;
+    }
+
+    .mainRow {
+        margin-top: 210px !important;
+    }
+
+    .belowTitle {
+        font-size: 40px;
+        text-align: center;
+    }
+    .belowBody {
+        font-size: 18px;
+        line-height: 20px;
+        text-align: center;
+    }
+}

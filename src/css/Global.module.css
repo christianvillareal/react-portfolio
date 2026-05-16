@@ -1,0 +1,9 @@
+body {
+    font-family: "Play", sans-serif;
+    font-size: 18px;
+}
+
+section {
+    background: linear-gradient(180deg, #E5F0F6 0%, #FFF 100%);
+    padding: 40px 0;
+}

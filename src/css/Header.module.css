@@ -1,0 +1,22 @@
+.customButton {
+    background: #0EA5E9;
+}
+
+.customNav {
+    background: #fff;
+    padding: 10px;
+}
+.customLink {
+    font-size: 18px;
+    padding: 15px 0;
+}
+.customLink:hover {
+    color: #0C4A6E!important;
+    text-decoration: underline;
+}
+
+:global(.active) {
+    color: #0C4A6E!important;
+    font-weight: bold;
+    text-decoration: underline;
+  }
