@@ -3,7 +3,14 @@ body {
     font-size: 18px;
 }
 
-section {
+#gradient {
     background: linear-gradient(180deg, #E5F0F6 0%, #FFF 100%);
     padding: 40px 0;
+}
+
+
+#gradient2 {
+    background: url(/public/images/gradient2.png);
+    background-repeat: no-repeat;
+    padding: 40 60px;
 }

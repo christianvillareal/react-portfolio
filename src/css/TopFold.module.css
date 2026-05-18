@@ -14,6 +14,31 @@
     line-height: normal;
 }
 
+/* Typewriter animation styles */
+.typewriterWrapper {
+    display: inline-block;
+    position: relative;
+}
+
+.typewriterText {
+    color: #3b8bb3;
+    border-right: 2px solid #3b8bb3;
+    animation: blinkCursor 0.75s step-end infinite;
+    padding-right: 5px;
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    margin-left: 2px;
+    animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
 .body {
     color: #616161;
     font-size: 25px;
@@ -22,19 +47,64 @@
     line-height: 36px;
 }
 
-.whiteBox  {
+/* Right Column - Position relative for z-index layering */
+.rightCol {
+    position: relative;
+    min-height: 600px;
+}
+
+/* Image Wrapper - Send to back */
+.imageWrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.profileImage {
+    position: relative;
+    z-index: 1;
+    display: block;
+    margin-left: auto;
+}
+
+/* White Box - Forward with higher z-index */
+.whiteBox {
     border-radius: 20px;
     border: 1px solid #D1D4E0;
     background: #FFF;
     box-shadow: 0px 20px 34px 0px rgba(0, 0, 0, 0.12);
     width: 370px;
     padding: 17px 25px;
-    position: relative;
-    margin-bottom: -184px;
-    bottom: -300px;
+    position: absolute;
+    bottom: 40px;
+    right: 220px;
+    z-index: 10;
+    transition: all 0.3s ease;
 }
 
-.fiveStar  {
+/* White box hover effect */
+.whiteBox:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 25px 40px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* White box animation */
+@keyframes fadeInUpWhiteBox {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up-whitebox {
+    animation: fadeInUpWhiteBox 0.7s ease 0.4s forwards;
+    opacity: 0;
+}
+
+.fiveStar {
     color: #0C4A6E;
     font-size: 18px;
     font-style: normal;
@@ -49,6 +119,16 @@
     font-weight: 700;
     line-height: 18px;
     text-align: left;
+}
+
+.subTitle::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 20px;
+    background: #3b8bb3;
+    margin-right: 10px;
+    border-radius: 2px;
 }
 
 .quote {
@@ -76,34 +156,269 @@
     line-height: 36px;
 }
 
+/* Fade in animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animation classes */
+.fade-in-up {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+.fade-in-up-delay-1 {
+    animation: fadeInUp 0.6s ease 0.2s forwards;
+    opacity: 0;
+}
+
+.fade-in-up-delay-2 {
+    animation: fadeInUp 0.6s ease 0.4s forwards;
+    opacity: 0;
+}
+
+.fade-in-up-delay-3 {
+    animation: fadeInUp 0.6s ease 0.6s forwards;
+    opacity: 0;
+}
+
+.fade-in-right {
+    animation: fadeInRight 0.7s ease 0.3s forwards;
+    opacity: 0;
+}
+
+/* Count up animation for numbers */
+.count-up {
+    animation: countUp 0.5s ease forwards;
+}
+
+/* Stat row hover effect */
+.statRow {
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.statRow:hover .belowTitle {
+    color: #3b8bb3;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.statRow:hover .belowBody {
+    color: #3b8bb3;
+    transition: all 0.3s ease;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .title {
+        font-size: 42px;
+    }
+    
+    .belowTitle {
+        font-size: 70px;
+    }
+    
+    .belowBody {
+        font-size: 20px;
+        line-height: 28px;
+    }
+    
+    .whiteBox {
+        width: 330px;
+        right: 0;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .title {
+        font-size: 38px;
+    }
+    
+    .body {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    
+    .belowTitle {
+        font-size: 55px;
+    }
+    
+    .belowBody {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    
+    .whiteBox {
+        width: 300px;
+        padding: 15px 20px;
+        bottom: -40px;
+        right: 0;
+    }
+    
+    .profileImage {
+        width: 350px;
+        height: auto;
+    }
+    
+    .rightCol {
+        min-height: 500px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .sub {
         font-size: 25px;
     }
+    
     .title {
         font-size: 32px;
     }
+    
     .body {
         font-size: 18px;
         line-height: 23px;
     }
+    
     .whiteBox {
-        margin-bottom: -154px;
-        bottom: -380px;
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin-top: 20px;
+        margin-bottom: 0;
         max-width: 100%;
+        width: 100%;
+        z-index: 10;
+    }
+    
+    .imageWrapper {
+        margin-bottom: -80px;
+        z-index: 1;
+    }
+    
+    .profileImage {
+        margin: 0 auto;
+        width: 280px;
+        height: auto;
     }
 
     .mainRow {
-        margin-top: 210px !important;
+        margin-top: 50px !important;
     }
 
     .belowTitle {
         font-size: 40px;
         text-align: center;
+        line-height: 1.2;
     }
+    
     .belowBody {
         font-size: 18px;
         line-height: 20px;
         text-align: center;
+    }
+    
+    .heroRow {
+        flex-direction: column;
+    }
+    
+    .leftCol {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .rightCol {
+        text-align: center !important;
+        min-height: auto;
+    }
+    
+    .typewriterWrapper {
+        display: inline-block;
+    }
+    
+    .statRow {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .statRow .my-auto {
+        text-align: center;
+    }
+    
+    .subTitle {
+        text-align: center;
+    }
+    
+    .subTitle::before {
+        display: none;
+    }
+    
+    .quote {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .title {
+        font-size: 28px;
+    }
+    
+    .belowTitle {
+        font-size: 32px;
+    }
+    
+    .belowBody {
+        font-size: 14px;
+        line-height: 18px;
+    }
+    
+    .profileImage {
+        width: 240px;
+    }
+    
+    .whiteBox {
+        padding: 15px;
+    }
+    
+    .fiveStar {
+        font-size: 14px;
+    }
+    
+    .subTitle {
+        font-size: 16px;
+    }
+    
+    .quote {
+        font-size: 13px;
+        line-height: 16px;
     }
 }

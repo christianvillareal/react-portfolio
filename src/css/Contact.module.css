@@ -1,0 +1,263 @@
+.contactSection {
+  padding: 80px 0;
+  background: url(/public/images/contact-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Title Styles */
+.title {
+  color: #0C4A6E;
+  text-align: center;
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+/* Subtitle Styles */
+.subtitle {
+  color: #4a6272;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 400;
+  max-width: 700px;
+  margin: 0 auto 48px;
+  line-height: 1.5;
+}
+
+/* Contact Grid */
+.contactGrid {
+  margin-top: 20px;
+  align-items: stretch;
+}
+
+/* Left Column - Form Wrapper */
+.formWrapper {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid #eef2f6;
+  height: 100%;
+}
+
+/* Form Group */
+.formGroup {
+  margin-bottom: 24px;
+}
+
+.formLabel {
+  display: block;
+  color: #1f3b4c;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  color: #334155;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: #3b8bb3;
+  box-shadow: 0 0 0 3px rgba(59, 139, 179, 0.1);
+  background: #ffffff;
+}
+
+.formInput:hover,
+.formSelect:hover,
+.formTextarea:hover {
+  border-color: #cbd5e1;
+}
+
+/* Send Button */
+.sendButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, #3b8bb3, #5aa9c9);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+
+.sendButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 139, 179, 0.3);
+  gap: 14px;
+}
+
+.sendButton svg {
+  transition: transform 0.3s ease;
+}
+
+.sendButton:hover svg {
+  transform: translateX(4px);
+}
+
+/* Right Column - Info Wrapper */
+.infoWrapper {
+  width: 100%;
+  padding-left: 30px;
+}
+
+/* Info Item */
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  transition: all 0.3s ease;
+}
+
+.infoItem:last-child {
+  margin-bottom: 0;
+}
+
+.infoItem:hover {
+  transform: translateX(5px);
+}
+
+.infoIcon {
+  background: transparent;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.infoIcon img {
+  width: 70px;
+    height: 70px;
+  object-fit: contain;
+}
+
+
+
+.infoContent {
+  flex: 1;
+}
+
+.infoLabel {
+  color: #6b7f8f;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.infoValue {
+  color: #0C4A6E;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0;
+    line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 40px;
+  }
+
+  .formWrapper {
+    padding: 32px;
+  }
+
+  .infoWrapper {
+    padding-left: 0;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contactSection {
+    padding: 60px 0;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 32px;
+  }
+
+  .formWrapper {
+    padding: 24px;
+  }
+
+  .infoItem {
+    margin-bottom: 24px;
+  }
+
+  .sendButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .contactSection {
+    padding: 40px 0;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .formWrapper {
+    padding: 20px;
+  }
+
+  .infoIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .infoIcon img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .infoValue {
+    font-size: 0.9rem;
+  }
+
+  .formInput,
+  .formSelect,
+  .formTextarea {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+}
