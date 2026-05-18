@@ -1,0 +1,289 @@
+.skillsSection {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  overflow-x: clip; /* Prevents horizontal scroll while allowing shadows */
+}
+
+/* Left-aligned title */
+.title {
+  color: #0C4A6E;
+  text-align: center;
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+/* Left-aligned subtitle without border */
+.subtitle {
+  color: #4a6272;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 48px;
+  line-height: 1.4;
+}
+
+/* Slider Container - Add padding to accommodate shadows */
+.sliderContainer {
+  position: relative;
+  padding-bottom: 70px; /* Space for arrows at bottom */
+  padding-left: 4px; /* Extra space for left shadow */
+  padding-right: 4px; /* Extra space for right shadow */
+  margin-left: -4px; /* Compensate for padding to keep alignment */
+  margin-right: -4px;
+}
+
+/* Swiper Styles - Ensure shadows are visible */
+.skillsSlider {
+  overflow: visible !important; /* Force visible overflow */
+  padding: 8px 0; /* Add padding for shadow visibility */
+}
+
+.skillsSlider .swiper-wrapper {
+  overflow: visible !important; /* Wrapper must also allow overflow */
+}
+
+.skillsSlider .swiper-slide {
+  height: auto; /* Allow slides to height match tallest slide */
+  display: flex;
+  overflow: visible !important; /* Prevent clipping on slides */
+  padding: 4px; /* Small padding to prevent shadow cutoff */
+}
+
+/* Skill Card - Left Aligned Content with equal height */
+.skillCard {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px 24px;
+  width: 100%;
+  height: 100%; /* Fill the slide height */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eef2f6;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  /* Ensure consistent height distribution */
+  min-height: 344px;
+  /* Ensure shadow is visible */
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover effect with larger shadow - no clipping */
+.skillCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.15);
+  z-index: 10; /* Bring to front on hover */
+  position: relative;
+}
+
+.skillIcon {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* Fixed height for icon area to ensure consistency */
+  height: 60px;
+}
+
+.skillIcon img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.skillName {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f3b4c;
+  margin-bottom: 12px;
+  /* Ensure consistent height for title area (allows 2 lines max) */
+  min-height: 60px;
+  line-height: 1.3;
+}
+
+.skillDescription {
+  font-size: 0.85rem;
+  color: #5d6f7e;
+  line-height: 1.5;
+  margin-bottom: 24px;
+  /* This allows description to grow but not push footer unevenly */
+  flex: 1;
+}
+
+/* Progress Wrapper - percentage on the right */
+.progressWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto; /* Pushes to bottom of card */
+  padding-top: 8px;
+}
+
+.progressBarBg {
+  flex: 1;
+  background-color: #e2e8f0;
+  border-radius: 60px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  background: linear-gradient(90deg, #3b8bb3, #5aa9c9);
+  width: 0%;
+  height: 100%;
+  border-radius: 60px;
+  transition: width 1s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+.percentValue {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a4e64;
+  min-width: 45px;
+  text-align: right;
+}
+
+/* Custom Navigation Arrows - Bottom Right */
+.customNavigation {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  gap: 12px;
+  z-index: 20; /* Higher z-index to stay above cards on hover */
+}
+
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
+  width: 44px;
+  height: 44px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #3b8bb3;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.swiper-button-prev-custom:hover,
+.swiper-button-next-custom:hover {
+  background: #3b8bb3;
+  color: white;
+  border-color: #3b8bb3;
+  transform: scale(1.05);
+}
+
+.swiper-button-prev-custom:active,
+.swiper-button-next-custom:active {
+  transform: scale(0.95);
+}
+
+/* Disabled state styling */
+.swiper-button-prev-custom.swiper-button-disabled,
+.swiper-button-next-custom.swiper-button-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Remove default Swiper navigation styles */
+.skillsSlider .swiper-button-next,
+.skillsSlider .swiper-button-prev {
+  display: none;
+}
+
+/* Remove pagination dots */
+.skillsSlider .swiper-pagination {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skillsSection {
+    padding: 50px 0;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 32px;
+  }
+
+  .sliderContainer {
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-left: -2px;
+    margin-right: -2px;
+  }
+
+  .skillCard {
+    padding: 20px 18px;
+    min-height: 300px;
+  }
+
+  .skillIcon {
+    height: 50px;
+  }
+
+  .skillIcon img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .skillName {
+    font-size: 1.1rem;
+    min-height: 50px;
+  }
+
+  .skillDescription {
+    font-size: 0.8rem;
+  }
+
+  .customNavigation {
+    right: 0;
+  }
+
+  .swiper-button-prev-custom,
+  .swiper-button-next-custom {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sliderContainer {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .customNavigation {
+    gap: 8px;
+  }
+
+  .swiper-button-prev-custom,
+  .swiper-button-next-custom {
+    width: 34px;
+    height: 34px;
+  }
+  
+  .skillCard {
+    min-height: 280px;
+  }
+  
+  .skillName {
+    font-size: 1rem;
+    min-height: 45px;
+  }
+}

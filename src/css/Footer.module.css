@@ -1,0 +1,216 @@
+.footer {
+  background: #0C4A6E;
+  padding: 60px 0 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Footer Content Layout */
+.footerContent {
+  align-items: center;
+  text-align: center;
+}
+
+/* Brand Column */
+.brandColumn {
+  text-align: left;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.firstName {
+  color: #FFFFFF;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+
+.lastName {
+  color: #5aa9c9;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+
+/* Navigation Column */
+.navColumn {
+  text-align: center;
+}
+
+.footerNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.navLink {
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 8px 4px;
+  position: relative;
+}
+
+.navLink:hover {
+  color: #5aa9c9;
+  transform: translateY(-2px);
+}
+
+/* Dot separator */
+.dot {
+  color: #5aa9c9;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 4px;
+}
+
+/* Copyright Column */
+.copyrightColumn {
+  text-align: right;
+}
+
+.copyright {
+  color: #8ba9be;
+  font-size: 0.85rem;
+  font-weight: 400;
+  margin-bottom: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .footer {
+    padding: 50px 0 35px;
+  }
+
+  .firstName,
+  .lastName {
+    font-size: 1.8rem;
+  }
+
+  .navLink {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 0 30px;
+  }
+
+  .footerContent {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .brandColumn {
+    text-align: center;
+  }
+
+  .brand {
+    align-items: center;
+  }
+
+  .firstName,
+  .lastName {
+    font-size: 1.6rem;
+  }
+
+  .navColumn {
+    text-align: center;
+  }
+
+  .footerNav {
+    gap: 12px;
+  }
+
+  .navLink {
+    font-size: 0.9rem;
+    padding: 6px 8px;
+  }
+
+  .dot {
+    font-size: 1rem;
+  }
+
+  .copyrightColumn {
+    text-align: center;
+  }
+
+  .copyright {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer {
+    padding: 35px 0 25px;
+  }
+
+  .firstName,
+  .lastName {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+  }
+
+  .footerNav {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .navLink {
+    font-size: 0.85rem;
+    padding: 5px 6px;
+  }
+
+  .dot {
+    font-size: 0.9rem;
+    margin: 0 2px;
+  }
+
+  .copyright {
+    font-size: 0.75rem;
+  }
+}
+
+/* Optional: Add subtle top border */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #5aa9c9, transparent);
+}
+
+/* Hover effect for nav links - underline animation */
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: #5aa9c9;
+  transition: width 0.3s ease;
+}
+
+.navLink:hover::after {
+  width: 80%;
+}
