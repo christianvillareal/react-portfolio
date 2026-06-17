@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://christianvillareal.github.io/sitemap.xml
+Sitemap: https://christianvillareal.github.io/react-portfolio/sitemap.xml
