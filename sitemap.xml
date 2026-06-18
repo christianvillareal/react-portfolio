@@ -7,20 +7,20 @@
   <!-- Homepage -->
   <url>
     <loc>https://christianvillareal.github.io/react-portfolio/</loc>
-    <lastmod>2026-06-17</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-  </url>
-  <!-- Sleep Connection Store Website Development -->
-  <url>
-    <loc>https://christianvillareal.github.io/react-portfolio/project/7tRO7MJQTa1Bu6FpuJVNLP</loc>
-    <lastmod>2026-06-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <!-- WatchTrack Fitness Tracker Website Development -->
   <url>
     <loc>https://christianvillareal.github.io/react-portfolio/project/jMlKmnwXmPrHfRf6kpp2k</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Sleep Connection Store Website Development -->
+  <url>
+    <loc>https://christianvillareal.github.io/react-portfolio/project/7tRO7MJQTa1Bu6FpuJVNLP</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
