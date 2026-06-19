@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CContainer, CRow, CCol } from '@coreui/react';
 import styles from '../css/News.module.css';
 
@@ -64,104 +64,105 @@ const getRandomFallbackImage = (id) => {
   return fallbackImagePool[index];
 };
 
-const getDemoNews = () => [
-  {
-    id: 1,
-    title: 'The Role of Technology in Modern Business Transformation',
-    description: 'We put your ideas and thus your wishes in the form of a unique web experience that drives results. Our innovative approach ensures your business stays ahead.',
-    imageSrc: getRandomFallbackImage(1),
-    imageAlt: 'Technology in Business',
-    date: 'Dec 15, 2024',
-    link: '#',
-    source: 'Tech News',
-  },
-  {
-    id: 2,
-    title: 'Design Trends Shaping 2025',
-    description: 'Innovative design approaches that are transforming how users interact with digital products.',
-    imageSrc: getRandomFallbackImage(2),
-    imageAlt: 'Design Trends',
-    date: 'Dec 12, 2024',
-    link: '#',
-    source: 'Design Weekly',
-  },
-  {
-    id: 3,
-    title: 'AI Revolution in Web Development',
-    description: 'How artificial intelligence is changing the landscape of modern web development and creating new possibilities.',
-    imageSrc: getRandomFallbackImage(3),
-    imageAlt: 'AI Development',
-    date: 'Dec 10, 2024',
-    link: '#',
-    source: 'Dev Insider',
-  },
-  {
-    id: 4,
-    title: 'Sustainable Web Design Practices',
-    description: 'Creating eco-friendly digital experiences that reduce carbon footprint.',
-    imageSrc: getRandomFallbackImage(4),
-    imageAlt: 'Sustainable Design',
-    date: 'Dec 8, 2024',
-    link: '#',
-    source: 'Green Tech',
-  },
-  {
-    id: 5,
-    title: 'The Future of UX/UI Design',
-    description: 'Emerging trends in user experience that prioritize accessibility and inclusivity for all users.',
-    imageSrc: getRandomFallbackImage(5),
-    imageAlt: 'UX/UI Future',
-    date: 'Dec 5, 2024',
-    link: '#',
-    source: 'UX Collective',
-  },
-  {
-    id: 6,
-    title: 'Building Scalable React Applications',
-    description: 'Best practices for creating maintainable and high-performance React apps.',
-    imageSrc: getRandomFallbackImage(6),
-    imageAlt: 'React Development',
-    date: 'Dec 3, 2024',
-    link: '#',
-    source: 'React Universe',
-  },
-  {
-    id: 7,
-    title: 'Cybersecurity Trends',
-    description: 'Latest developments in protecting digital assets and user privacy.',
-    imageSrc: getRandomFallbackImage(7),
-    imageAlt: 'Cybersecurity',
-    date: 'Nov 28, 2024',
-    link: '#',
-    source: 'Security Today',
-  },
-  {
-    id: 8,
-    title: 'Cloud Computing Innovations',
-    description: 'How cloud technology is enabling scalable and flexible business solutions for modern enterprises.',
-    imageSrc: getRandomFallbackImage(8),
-    imageAlt: 'Cloud Computing',
-    date: 'Nov 25, 2024',
-    link: '#',
-    source: 'Cloud Weekly',
-  },
-  {
-    id: 9,
-    title: 'Mobile App Design Best Practices',
-    description: 'Creating intuitive and engaging mobile experiences for modern users.',
-    imageSrc: getRandomFallbackImage(9),
-    imageAlt: 'Mobile Design',
-    date: 'Nov 20, 2024',
-    link: '#',
-    source: 'App Design Hub',
-  },
-];
-
 function News() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchNewsFromAPI = useCallback(async () => {
+  // Demo data with varied content lengths and different fallback images
+  const getDemoNews = () => [
+    {
+      id: 1,
+      title: 'The Role of Technology in Modern Business Transformation',
+      description: 'We put your ideas and thus your wishes in the form of a unique web experience that drives results. Our innovative approach ensures your business stays ahead.',
+      imageSrc: getRandomFallbackImage(1),
+      imageAlt: 'Technology in Business',
+      date: 'Dec 15, 2024',
+      link: '#',
+      source: 'Tech News',
+    },
+    {
+      id: 2,
+      title: 'Design Trends Shaping 2025',
+      description: 'Innovative design approaches that are transforming how users interact with digital products.',
+      imageSrc: getRandomFallbackImage(2),
+      imageAlt: 'Design Trends',
+      date: 'Dec 12, 2024',
+      link: '#',
+      source: 'Design Weekly',
+    },
+    {
+      id: 3,
+      title: 'AI Revolution in Web Development',
+      description: 'How artificial intelligence is changing the landscape of modern web development and creating new possibilities.',
+      imageSrc: getRandomFallbackImage(3),
+      imageAlt: 'AI Development',
+      date: 'Dec 10, 2024',
+      link: '#',
+      source: 'Dev Insider',
+    },
+    {
+      id: 4,
+      title: 'Sustainable Web Design Practices',
+      description: 'Creating eco-friendly digital experiences that reduce carbon footprint.',
+      imageSrc: getRandomFallbackImage(4),
+      imageAlt: 'Sustainable Design',
+      date: 'Dec 8, 2024',
+      link: '#',
+      source: 'Green Tech',
+    },
+    {
+      id: 5,
+      title: 'The Future of UX/UI Design',
+      description: 'Emerging trends in user experience that prioritize accessibility and inclusivity for all users.',
+      imageSrc: getRandomFallbackImage(5),
+      imageAlt: 'UX/UI Future',
+      date: 'Dec 5, 2024',
+      link: '#',
+      source: 'UX Collective',
+    },
+    {
+      id: 6,
+      title: 'Building Scalable React Applications',
+      description: 'Best practices for creating maintainable and high-performance React apps.',
+      imageSrc: getRandomFallbackImage(6),
+      imageAlt: 'React Development',
+      date: 'Dec 3, 2024',
+      link: '#',
+      source: 'React Universe',
+    },
+    {
+      id: 7,
+      title: 'Cybersecurity Trends',
+      description: 'Latest developments in protecting digital assets and user privacy.',
+      imageSrc: getRandomFallbackImage(7),
+      imageAlt: 'Cybersecurity',
+      date: 'Nov 28, 2024',
+      link: '#',
+      source: 'Security Today',
+    },
+    {
+      id: 8,
+      title: 'Cloud Computing Innovations',
+      description: 'How cloud technology is enabling scalable and flexible business solutions for modern enterprises.',
+      imageSrc: getRandomFallbackImage(8),
+      imageAlt: 'Cloud Computing',
+      date: 'Nov 25, 2024',
+      link: '#',
+      source: 'Cloud Weekly',
+    },
+    {
+      id: 9,
+      title: 'Mobile App Design Best Practices',
+      description: 'Creating intuitive and engaging mobile experiences for modern users.',
+      imageSrc: getRandomFallbackImage(9),
+      imageAlt: 'Mobile Design',
+      date: 'Nov 20, 2024',
+      link: '#',
+      source: 'App Design Hub',
+    },
+  ];
+
+  const fetchNewsFromAPI = async () => {
     setLoading(true);
     try {
       const techFeeds = [
@@ -242,11 +243,11 @@ function News() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  };
 
   useEffect(() => {
     fetchNewsFromAPI();
-  }, [fetchNewsFromAPI]);
+  }, []);
 
   if (loading) {
     return (

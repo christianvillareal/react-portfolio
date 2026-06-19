@@ -4,25 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <script>
-      (function (location) {
-        if (location.search[1] === '/') {
-          var decodedPath = location.search
-            .slice(1)
-            .split('&')
-            .map(function (segment) {
-              return segment.replace(/~and~/g, '&');
-            })
-            .join('?');
-
-          window.history.replaceState(
-            null,
-            '',
-            location.pathname.slice(0, -1) + decodedPath + location.hash
-          );
-        }
-      })(window.location);
-    </script>
     
     <!-- PRIMARY SEO META TAGS (Fallback - Helmet will override these) -->
     <meta name="description" content="Christian Villareal - React Developer & UI/UX Designer Portfolio. Specializing in modern web applications, UI/UX design, and frontend development." />

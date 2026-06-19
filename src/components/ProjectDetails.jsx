@@ -1,5 +1,5 @@
 // ProjectDetails.jsx - With Proper Rich Text Rendering
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CContainer, CRow, CCol } from '@coreui/react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { createClient } from 'contentful';
@@ -33,7 +33,6 @@ function ProjectDetails() {
   // Lightbox state
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const imageCount = project?.images?.length || 0;
 
   // Initialize tsparticles with slim version
   const particlesInit = async (engine) => {
@@ -76,28 +75,24 @@ function ProjectDetails() {
   };
 
   // Close lightbox
-  const closeLightbox = useCallback(() => {
+  const closeLightbox = () => {
     setLightboxOpen(false);
     document.body.style.overflow = 'unset';
-  }, []);
+  };
 
   // Navigate to previous image
-  const prevImage = useCallback(() => {
-    if (!imageCount) return;
-
+  const prevImage = () => {
     setCurrentImageIndex((prev) => 
-      prev === 0 ? imageCount - 1 : prev - 1
+      prev === 0 ? project.images.length - 1 : prev - 1
     );
-  }, [imageCount]);
+  };
 
   // Navigate to next image
-  const nextImage = useCallback(() => {
-    if (!imageCount) return;
-
+  const nextImage = () => {
     setCurrentImageIndex((prev) => 
-      prev === imageCount - 1 ? 0 : prev + 1
+      prev === project.images.length - 1 ? 0 : prev + 1
     );
-  }, [imageCount]);
+  };
 
   // Handle keyboard navigation
   useEffect(() => {
@@ -115,7 +110,7 @@ function ProjectDetails() {
     
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [closeLightbox, lightboxOpen, nextImage, prevImage]);
+  }, [lightboxOpen, currentImageIndex, project?.images]);
 
   // Fetch project data
   useEffect(() => {
