@@ -2,48 +2,112 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
+    
+    <!-- PRIMARY SEO META TAGS (Fallback - Helmet will override these) -->
+    <meta name="description" content="Christian Villareal - React Developer & UI/UX Designer Portfolio. Specializing in modern web applications, UI/UX design, and frontend development." />
+    <meta name="keywords" content="React developer, UI/UX designer, frontend developer, web designer, portfolio, Philippines, Christian Villareal" />
+    <meta name="author" content="Christian Villareal" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Christian Villareal | React Developer & UI/UX Designer" />
+    <meta property="og:description" content="Frontend React developer specializing in modern web apps, UI/UX design, and creative solutions. Based in Cebu, Philippines." />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://christianvillareal.github.io/react-portfolio" />
+    <meta property="og:site_name" content="Christian Villareal Portfolio" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Christian Villareal | React Developer & UI/UX Designer" />
+    <meta name="twitter:description" content="Frontend React developer portfolio showcasing modern web apps and UI/UX design projects." />
+    <meta name="twitter:image" content="%PUBLIC_URL%/og-image.jpg" />
+    <meta name="twitter:creator" content="@christianvillareal" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://christianvillareal.github.io/react-portfolio" />
+    
+    <!-- Icons -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    
+    <!-- Title -->
+    <title>Christian Villareal | React Developer & UI/UX Designer</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
     
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Christian Villareal",
+        "url": "https://christianvillareal.github.io/react-portfolio",
+        "jobTitle": "React Developer & UI/UX Designer",
+        "description": "Frontend React developer specializing in modern web applications, UI/UX design, and creative solutions.",
+        "image": "%PUBLIC_URL%/og-image.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Cebu City",
+          "addressCountry": "Philippines"
+        },
+        "sameAs": [
+          "https://github.com/christianvillareal",
+          "https://linkedin.com/in/christianvillareal",
+          "https://twitter.com/christianvillareal"
+        ],
+        "knowsAbout": [
+          "React", 
+          "JavaScript", 
+          "UI/UX Design", 
+          "Web Development", 
+          "Frontend",
+          "HTML",
+          "CSS",
+          "Responsive Design"
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Freelance"
+        }
+      }
+    </script>
+    
+    <!-- Organization Schema (for better SEO) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Christian Villareal Portfolio",
+        "url": "https://christianvillareal.github.io/react-portfolio",
+        "logo": "%PUBLIC_URL%/logo192.png",
+        "description": "Professional portfolio of Christian Villareal - React Developer and UI/UX Designer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Cebu City",
+          "addressCountry": "Philippines"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "Customer Service",
+          "email": "chanix.webdesigns@gmail.com",
+          "availableLanguage": ["English"]
+        }
+      }
+    </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>You need to enable JavaScript to view this React portfolio. Please enable JavaScript in your browser settings.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

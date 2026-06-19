@@ -102,4 +102,12 @@
   .card {
     padding: 20px 16px;
   }
+
+  .title2 {
+    font-size: 18px;
+  }
+
+  .description {
+      font-size: 14px;
+  }
 }

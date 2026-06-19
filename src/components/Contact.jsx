@@ -1,3 +1,4 @@
+// src/components/Contact.jsx
 import React, { useState } from 'react';
 import { CContainer, CRow, CCol, CForm, CFormInput, CFormSelect, CFormTextarea } from '@coreui/react';
 import styles from '../css/Contact.module.css';
@@ -11,6 +12,14 @@ function Contact() {
     option: '',
     message: ''
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+
+  // Determine which API URL to use based on environment
+  const API_URL = process.env.NODE_ENV === 'development' 
+    ? 'http://localhost:3001'  // Local backend for development
+    : 'https://portfolio-backend.onrender.com'; // Production backend on Render
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,12 +27,73 @@ function Contact() {
       ...prev,
       [name]: value
     }));
+    if (submitStatus.message) setSubmitStatus({ type: '', message: '' });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Message sent successfully!');
+    
+    // Validation
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.option || !formData.message) {
+      setSubmitStatus({ type: 'error', message: 'Please fill in all required fields.' });
+      return;
+    }
+
+    if (!formData.email.includes('@')) {
+      setSubmitStatus({ type: 'error', message: 'Please enter a valid email address.' });
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus({ type: '', message: '' });
+
+    try {
+      console.log('Sending to:', `${API_URL}/api/contact`);
+      console.log('Data:', formData);
+
+      const response = await fetch(`${API_URL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({ 
+          type: 'success', 
+          message: 'Thank you! Your message has been sent successfully. I\'ll get back to you soon.' 
+        });
+        // Reset form
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          option: '',
+          message: ''
+        });
+      } else {
+        throw new Error(data.error || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setSubmitStatus({ 
+        type: 'error', 
+        message: `Sorry, there was an error sending your message. ${error.message}` 
+      });
+    } finally {
+      setIsSubmitting(false);
+      
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => {
+        if (submitStatus.type === 'success') {
+          setSubmitStatus({ type: '', message: '' });
+        }
+      }, 5000);
+    }
   };
 
   const options = [
@@ -38,7 +108,6 @@ function Contact() {
   return (
     <section id="contact" className={styles.contactSection}>
       <CContainer>
-        {/* Header Section */}
         <CRow>
           <CCol md={12}>
             <h1 className={styles.title}>Let's work together!</h1>
@@ -48,16 +117,21 @@ function Contact() {
           </CCol>
         </CRow>
 
-        {/* Contact Form and Info Grid */}
         <CRow className={styles.contactGrid}>
-          {/* Left Column - Contact Form */}
-          <CCol lg={6} md={12}>
+          <CCol lg={6} md={6} xs={12}>
             <div className={styles.formWrapper}>
+              {/* Status Messages */}
+              {submitStatus.message && (
+                <div className={`${styles.statusMessage} ${styles[submitStatus.type]}`}>
+                  {submitStatus.message}
+                </div>
+              )}
+
               <CForm onSubmit={handleSubmit}>
                 <CRow>
                   <CCol md={6}>
                     <div className={styles.formGroup}>
-                      <label className={styles.formLabel}>First Name</label>
+                      <label className={styles.formLabel}>First Name *</label>
                       <CFormInput
                         type="text"
                         name="firstName"
@@ -65,13 +139,13 @@ function Contact() {
                         onChange={handleChange}
                         placeholder="Your first name"
                         className={styles.formInput}
-                        required
+                        disabled={isSubmitting}
                       />
                     </div>
                   </CCol>
                   <CCol md={6}>
                     <div className={styles.formGroup}>
-                      <label className={styles.formLabel}>Last Name</label>
+                      <label className={styles.formLabel}>Last Name *</label>
                       <CFormInput
                         type="text"
                         name="lastName"
@@ -79,7 +153,7 @@ function Contact() {
                         onChange={handleChange}
                         placeholder="Your last name"
                         className={styles.formInput}
-                        required
+                        disabled={isSubmitting}
                       />
                     </div>
                   </CCol>
@@ -88,7 +162,7 @@ function Contact() {
                 <CRow>
                   <CCol md={6}>
                     <div className={styles.formGroup}>
-                      <label className={styles.formLabel}>Email</label>
+                      <label className={styles.formLabel}>Email *</label>
                       <CFormInput
                         type="email"
                         name="email"
@@ -96,7 +170,7 @@ function Contact() {
                         onChange={handleChange}
                         placeholder="your@email.com"
                         className={styles.formInput}
-                        required
+                        disabled={isSubmitting}
                       />
                     </div>
                   </CCol>
@@ -110,25 +184,26 @@ function Contact() {
                         onChange={handleChange}
                         placeholder="Phone Number"
                         className={styles.formInput}
+                        disabled={isSubmitting}
                       />
                     </div>
                   </CCol>
                 </CRow>
 
                 <div className={styles.formGroup}>
-                  <label className={styles.formLabel}>Please Choose an Option</label>
+                  <label className={styles.formLabel}>Service Option *</label>
                   <CFormSelect
                     name="option"
                     value={formData.option}
                     onChange={handleChange}
                     className={styles.formSelect}
                     options={options}
-                    required
+                    disabled={isSubmitting}
                   />
                 </div>
 
                 <div className={styles.formGroup}>
-                  <label className={styles.formLabel}>Message</label>
+                  <label className={styles.formLabel}>Message *</label>
                   <CFormTextarea
                     name="message"
                     value={formData.message}
@@ -136,22 +211,23 @@ function Contact() {
                     placeholder="Your message here..."
                     rows={5}
                     className={styles.formTextarea}
-                    required
+                    disabled={isSubmitting}
                   />
                 </div>
 
-                <button type="submit" className={styles.sendButton}>
-                  Send Message
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
+                <button type="submit" className={styles.sendButton} disabled={isSubmitting}>
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {!isSubmitting && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
                 </button>
               </CForm>
             </div>
           </CCol>
 
-          {/* Right Column - Contact Info - with my-auto for vertical alignment */}
-          <CCol lg={6} md={12} className="my-auto">
+          <CCol lg={6} md={6} xs={12} className="my-auto">
             <div className={styles.infoWrapper}>
               <div>
                 <div className={styles.infoItem}>

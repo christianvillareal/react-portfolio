@@ -329,6 +329,7 @@
         margin: 0 auto;
         width: 280px;
         height: auto;
+        margin-top: 20px;
     }
 
     .mainRow {
@@ -420,5 +421,685 @@
     .quote {
         font-size: 13px;
         line-height: 16px;
+    }
+}
+
+
+@media screen and (max-width: 1400px) {
+    .whiteBox {
+        right: 100px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .whiteBox {
+        width: 300px;
+        right: 40px;
+        bottom: 30px;
+    }
+    
+    .profileImage {
+        width: 380px;
+        height: auto;
+    }
+    
+    .rightCol {
+        min-height: 550px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .heroRow {
+        flex-direction: column;
+    }
+    
+    .leftCol {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    
+    .rightCol {
+        text-align: center !important;
+        min-height: auto;
+        margin-bottom: 40px;
+    }
+    
+    .profileImage {
+        margin: 0 auto;
+        width: 350px;
+    }
+    
+    .whiteBox {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin: -60px auto 0 auto;
+        width: 90%;
+        max-width: 370px;
+    }
+    
+    .typewriterWrapper {
+        display: inline-block;
+    }
+    
+    .statRow {
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .statRow .my-auto {
+        text-align: center;
+    }
+    
+    .subTitle {
+        text-align: left;
+    }
+    
+    .quote {
+        text-align: left;
+    }
+    
+    .subTitle::before {
+        display: inline-block;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sub {
+        font-size: 28px;
+    }
+    
+    .title {
+        font-size: 36px;
+    }
+    
+    .body {
+        font-size: 18px;
+        line-height: 28px;
+        padding: 0;
+    }
+    
+    .profileImage {
+        width: 280px;
+    }
+    
+    .whiteBox {
+        width: 95%;
+        padding: 15px 20px;
+    }
+    
+    .fiveStar {
+        font-size: 14px;
+        line-height: 24px;
+    }
+    
+    .subTitle {
+        font-size: 18px;
+        line-height: 16px;
+    }
+    
+    .quote {
+        font-size: 14px;
+        line-height: 16px;
+    }
+    
+    .belowTitle {
+        font-size: 48px;
+        line-height: 1.2;
+        margin-bottom: 10px;
+    }
+    
+    .belowBody {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    
+    .mainRow {
+        margin-top: 20px !important;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .sub {
+        font-size: 24px;
+    }
+    
+    .title {
+        font-size: 28px;
+    }
+    
+    .body {
+        font-size: 16px;
+        line-height: 24px;
+        padding: 0 15px;
+    }
+    
+    .profileImage {
+        width: 240px;
+    }
+    
+    .whiteBox {
+        width: 100%;
+        padding: 12px 16px;
+        margin-top: -50px;
+    }
+    
+    .fiveStar {
+        font-size: 12px;
+        line-height: 20px;
+    }
+    
+    .subTitle {
+        font-size: 16px;
+    }
+    
+    .subTitle::before {
+        width: 3px;
+        height: 16px;
+        margin-right: 8px;
+    }
+    
+    .quote {
+        font-size: 12px;
+        line-height: 14px;
+    }
+    
+    .belowTitle {
+        font-size: 36px;
+    }
+    
+    .belowBody {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    
+    .statRow {
+        margin-bottom: 20px;
+    }
+    
+    .statRow:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .sub {
+        font-size: 20px;
+    }
+    
+    .title {
+        font-size: 24px;
+    }
+    
+    .body {
+        font-size: 14px;
+        line-height: 22px;
+    }
+    
+    .profileImage {
+        width: 200px;
+        margin-top: 10px;
+    }
+    
+    .whiteBox {
+        padding: 10px 14px;
+        margin-top: -40px;
+    }
+    
+    .fiveStar {
+        font-size: 10px;
+    }
+    
+    .subTitle {
+        font-size: 14px;
+    }
+    
+    .quote {
+        font-size: 11px;
+    }
+    
+    .belowTitle {
+        font-size: 28px;
+    }
+    
+    .belowBody {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+/* Tablet landscape specific adjustments */
+@media screen and (min-width: 769px) and (max-width: 992px) {
+    .whiteBox {
+        position: absolute;
+        bottom: 40px;
+        right: 20px;
+        margin: 0;
+        width: 320px;
+    }
+    
+    .profileImage {
+        margin-left: auto;
+        margin-right: 0;
+    }
+    
+    .rightCol {
+        min-height: 500px;
+    }
+}
+
+/* Maintain hover effects only on devices that support hover */
+@media (hover: hover) {
+    .whiteBox:hover {
+        transform: translateY(-5px);
+    }
+    
+    .statRow:hover .belowTitle {
+        color: #3b8bb3;
+        transform: scale(1.05);
+    }
+    
+    .statRow:hover .belowBody {
+        color: #3b8bb3;
+    }
+}
+
+/* Disable hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .whiteBox:hover {
+        transform: none;
+    }
+    
+    .statRow:hover .belowTitle {
+        color: #0C4A6E;
+        transform: none;
+    }
+    
+    .statRow:hover .belowBody {
+        color: #616161;
+    }
+}
+
+/* Preserve animations but allow reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .fade-in-up,
+    .fade-in-up-delay-1,
+    .fade-in-up-delay-2,
+    .fade-in-up-delay-3,
+    .fade-in-up-whitebox,
+    .fade-in-right,
+    .count-up {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+    
+    .cursor {
+        animation: none;
+    }
+    
+    .whiteBox {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+
+
+
+
+/* Large Desktop (1400px and above) - Keep original layout */
+@media screen and (min-width: 1200px) {
+    .whiteBox {
+        position: absolute;
+        bottom: 40px;
+        right: 220px;
+    }
+}
+
+/* Desktop and Medium Screens (992px - 1200px) - Same as desktop */
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    .whiteBox {
+        width: 320px;
+        right: 40px;
+        bottom: 30px;
+    }
+    
+    .profileImage {
+        width: 400px;
+        height: auto;
+    }
+    
+    .rightCol {
+        min-height: 550px;
+    }
+}
+
+/* Medium Screens (768px - 992px) - Keep desktop layout, no stacking */
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    /* Keep side-by-side layout */
+    .heroRow {
+        flex-direction: row;
+    }
+    
+    .leftCol {
+        text-align: left;
+        margin-bottom: 0;
+    }
+    
+    .rightCol {
+        text-align: right !important;
+        min-height: 550px;
+        margin-bottom: 0;
+    }
+    
+    .profileImage {
+        margin-left: auto;
+        margin-right: 0;
+        width: 350px;
+    }
+    
+    .whiteBox {
+        position: absolute;
+        bottom: 30px;
+        right: 0;
+        width: 300px;
+        margin: 0 0 60px 0;
+    }
+    
+    .typewriterWrapper {
+        display: inline-block;
+    }
+    
+    .statRow {
+        justify-content: flex-start;
+        text-align: left;
+        margin-bottom: 0;
+    }
+    
+    .statRow .my-auto {
+        text-align: left;
+    }
+    
+    .subTitle {
+        text-align: left;
+    }
+    
+    .quote {
+        text-align: left;
+    }
+    
+    .subTitle::before {
+        display: inline-block;
+    }
+}
+
+/* Tablet Portrait (below 768px) - Only then switch to mobile layout */
+@media screen and (max-width: 767px) {
+    .heroRow {
+        flex-direction: column;
+    }
+    
+    .leftCol {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    
+    .rightCol {
+        text-align: center !important;
+        min-height: auto;
+        margin-bottom: 40px;
+    }
+    
+    .profileImage {
+        margin: 0 auto;
+        width: 280px;
+    }
+    
+    .whiteBox {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin: -60px auto 0 auto;
+        width: 90%;
+        max-width: 370px;
+    }
+    
+    .typewriterWrapper {
+        display: inline-block;
+    }
+    
+    .statRow {
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .statRow .my-auto {
+        text-align: center;
+    }
+    
+    .subTitle {
+        text-align: center;
+    }
+    
+    .subTitle::before {
+        display: none;
+    }
+    
+    .quote {
+        text-align: center;
+    }
+    
+    .sub {
+        font-size: 28px;
+    }
+    
+    .title {
+        font-size: 36px;
+    }
+    
+    .body {
+        font-size: 18px;
+        line-height: 28px;
+        padding: 0 20px;
+    }
+    
+    .fiveStar {
+        font-size: 14px;
+        line-height: 24px;
+    }
+    
+    .subTitle {
+        font-size: 18px;
+        line-height: 16px;
+    }
+    
+    .quote {
+        font-size: 14px;
+        line-height: 16px;
+    }
+    
+    .belowTitle {
+        font-size: 48px;
+        line-height: 1.2;
+        margin-bottom: 10px;
+    }
+    
+    .belowBody {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    
+    .mainRow {
+        margin-top: 20px !important;
+    }
+}
+
+/* Small Mobile (up to 576px) */
+@media screen and (max-width: 576px) {
+    .sub {
+        font-size: 24px;
+    }
+    
+    .title {
+        font-size: 28px;
+    }
+    
+    .body {
+        font-size: 16px;
+        line-height: 24px;
+        padding: 0 15px;
+    }
+    
+    .profileImage {
+        width: 240px;
+    }
+    
+    .whiteBox {
+        width: 100%;
+        padding: 12px 16px;
+        margin-top: -50px;
+    }
+    
+    .fiveStar {
+        font-size: 12px;
+        line-height: 20px;
+    }
+    
+    .subTitle {
+        font-size: 16px;
+    }
+    
+    .subTitle::before {
+        display: none;
+    }
+    
+    .quote {
+        font-size: 12px;
+        line-height: 14px;
+    }
+    
+    .belowTitle {
+        font-size: 36px;
+    }
+    
+    .belowBody {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    
+    .statRow {
+        margin-bottom: 20px;
+    }
+    
+    .statRow:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Extra Small Mobile (up to 375px) */
+@media screen and (max-width: 375px) {
+    .sub {
+        font-size: 20px;
+    }
+    
+    .title {
+        font-size: 24px;
+    }
+    
+    .body {
+        font-size: 14px;
+        line-height: 22px;
+    }
+    
+    .profileImage {
+        width: 200px;
+    }
+    
+    .whiteBox {
+        padding: 10px 14px;
+        margin-top: -40px;
+    }
+    
+    .fiveStar {
+        font-size: 10px;
+    }
+    
+    .subTitle {
+        font-size: 14px;
+    }
+    
+    .quote {
+        font-size: 11px;
+    }
+    
+    .belowTitle {
+        font-size: 28px;
+    }
+    
+    .belowBody {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+/* Maintain hover effects only on devices that support hover */
+@media (hover: hover) {
+    .whiteBox:hover {
+        transform: translateY(-5px);
+    }
+    
+    .statRow:hover .belowTitle {
+        color: #3b8bb3;
+        transform: scale(1.05);
+    }
+    
+    .statRow:hover .belowBody {
+        color: #3b8bb3;
+    }
+}
+
+/* Disable hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .whiteBox:hover {
+        transform: none;
+    }
+    
+    .statRow:hover .belowTitle {
+        color: #0C4A6E;
+        transform: none;
+    }
+    
+    .statRow:hover .belowBody {
+        color: #616161;
+    }
+}
+
+/* Preserve animations but allow reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .fade-in-up,
+    .fade-in-up-delay-1,
+    .fade-in-up-delay-2,
+    .fade-in-up-delay-3,
+    .fade-in-up-whitebox,
+    .fade-in-right,
+    .count-up {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+    
+    .cursor {
+        animation: none;
+    }
+    
+    .whiteBox {
+        animation: none;
+        opacity: 1;
+        transform: none;
     }
 }

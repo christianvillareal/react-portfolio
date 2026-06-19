@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Christian Villareal Portfolio</title>
+  <script>
+    (function() {
+      // Get the current path
+      var path = window.location.pathname;
+      var search = window.location.search;
+      var hash = window.location.hash;
+      
+      // Check if it's a static file (images, css, js, sitemap, etc.)
+      var staticFilePattern = /\.(css|js|json|png|jpg|jpeg|gif|svg|ico|xml|txt|webp|pdf|woff|woff2|ttf|eot)$/i;
+      var isStaticFile = staticFilePattern.test(path);
+      
+      // Check if it's a special file
+      var isSpecialFile = path.includes('sitemap.xml') || 
+                          path.includes('robots.txt') || 
+                          path.includes('favicon.ico') ||
+                          path.includes('manifest.json');
+      
+      // If it's a static file or special file, let the browser handle it
+      if (isStaticFile || isSpecialFile) {
+        return;
+      }
+      
+      // Store the path for React Router to use
+      var fullPath = path + search + hash;
+      sessionStorage.setItem('redirect', fullPath);
+      
+      // Redirect to the main page with the path
+      window.location.replace('/react-portfolio/');
+    })();
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=/react-portfolio/">
+  </noscript>
+</head>
+<body>
+  <p>Loading portfolio...</p>
+  <p>If you are not redirected, <a href="/react-portfolio/">click here</a>.</p>
+</body>
+</html>

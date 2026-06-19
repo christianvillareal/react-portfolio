@@ -12,5 +12,6 @@ body {
 #gradient2 {
     background: url(/public/images/gradient2.png);
     background-repeat: no-repeat;
+    background-size: cover;
     padding: 40 60px;
 }
