@@ -5,6 +5,8 @@ import CustomButton from './CustomButton'
 import styles from '../css/TopFold.module.css';
 import { ArrowDownTrayIcon } from '@heroicons/react/24/solid';
 
+const roles = ['Developer', 'Designer'];
+
 function TopFold() {
 
   // Function to open resume in new tab
@@ -22,7 +24,6 @@ function TopFold() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [typedText, setTypedText] = useState('');
   
-  const roles = ['Developer', 'Designer'];
   const targetYears = 9;
   const targetProjects = 99;
   const targetClients = 35;

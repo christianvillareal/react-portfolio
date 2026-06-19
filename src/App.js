@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SEO from './components/SEO';
 
@@ -22,20 +22,19 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProjectDetails from './components/ProjectDetails';
 
-function App() {
-  // Get the base URL from package.json homepage or environment
-  const basename = process.env.PUBLIC_URL || '/react-portfolio';
+const getBasename = () => {
+  const publicUrl = process.env.PUBLIC_URL || '/';
 
-  // Handle redirect from 404.html
-  useEffect(() => {
-    const redirect = sessionStorage.getItem('redirect');
-    if (redirect && redirect !== window.location.pathname) {
-      // Clear it immediately to prevent loops
-      sessionStorage.removeItem('redirect');
-      // Navigate to the stored path using replaceState
-      window.history.replaceState(null, '', redirect);
-    }
-  }, []);
+  try {
+    const pathname = new URL(publicUrl, window.location.origin).pathname;
+    return pathname.replace(/\/$/, '') || '/';
+  } catch {
+    return publicUrl.replace(/\/$/, '') || '/';
+  }
+};
+
+function App() {
+  const basename = getBasename();
 
   return (
     <Router basename={basename}>
