@@ -4,7 +4,7 @@ import styles from '../css/Experience.module.css';
 const experiences = [
   {
     id: 1,
-    period: "Jan. 2019 - Present",
+    period: "Jan. 2019 - Mar. 2026",
     title: "Sr. Front End Developer",
     company: "Front End Developer @Customer Benefits SVCS",
     description: "I focus on translating design concepts into interactive and functional web applications.",
@@ -54,8 +54,8 @@ function Experience() {
 
       <CRow className="g-4">
         {experiences.map((exp) => (
-          <CCol key={exp.id} md={6}>
-            {/* Apply the background style inline */}
+          <CCol key={exp.id} md={6} xs={6}>
+            
             <div className={styles.card} style={cardBackgroundStyle}>
               <h4 className={styles.period}>{exp.period}</h4>
               <h2 className={styles.title2}>{exp.title}</h2>

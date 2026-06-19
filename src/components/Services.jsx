@@ -93,7 +93,7 @@ function Services() {
 
             <CRow className={styles.servicesGrid}>
                 {cardContent.map((content, index) => (
-                    <CCol key={index} md={6} lg={4} xl={3} className='mb-4'>
+                    <CCol key={index} xs={6} md={6} lg={4} xl={3} className='mb-4'>
                         <div className={styles.serviceCard}>
                             <div className={styles.iconWrapper}>
                                 {content.icon}

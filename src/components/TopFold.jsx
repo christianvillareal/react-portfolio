@@ -1,3 +1,4 @@
+// TopFold.jsx - Responsive with preserved CSS
 import React, { useState, useEffect } from 'react';
 import { CContainer, CRow, CCol } from '@coreui/react';
 import CustomButton from './CustomButton'
@@ -5,6 +6,12 @@ import styles from '../css/TopFold.module.css';
 import { ArrowDownTrayIcon } from '@heroicons/react/24/solid';
 
 function TopFold() {
+
+  // Function to open resume in new tab
+  const openResume = () => {
+    window.open(`${process.env.PUBLIC_URL}/resume.pdf`, '_blank');
+  };
+
   // State for number shuffling animation
   const [yearsExp, setYearsExp] = useState(0);
   const [projectsCompleted, setProjectsCompleted] = useState(0);
@@ -16,7 +23,7 @@ function TopFold() {
   const [typedText, setTypedText] = useState('');
   
   const roles = ['Developer', 'Designer'];
-  const targetYears =9;
+  const targetYears = 9;
   const targetProjects = 99;
   const targetClients = 35;
 
@@ -93,7 +100,7 @@ function TopFold() {
   return (
     <CContainer className='py-5'>
         <CRow className={styles.heroRow}>
-            <CCol className={`my-auto ${styles.leftCol}`}>
+            <CCol lg={7} md={7} className={`my-auto ${styles.leftCol}`}>
                 <h4 className={`${styles.sub} fade-in-up`}>I am Christian</h4>
                 <h1 className={`${styles.title} fade-in-up-delay-1`}>
                     Creative <span className={styles.typewriterWrapper}>
@@ -109,12 +116,12 @@ function TopFold() {
                   <CustomButton
                       text="Download Now"
                       Icon={ArrowDownTrayIcon}
-                      onClick={() => alert('Button clicked!')}
+                      onClick={openResume}
                       color="primary"
                   />
                 </div>
             </CCol>
-            <CCol className={`text-end ${styles.rightCol}`}>
+            <CCol lg={5} md={5} className={`text-end ${styles.rightCol}`}>
                 {/* Image - Send to back with lower z-index */}
                 <div className={styles.imageWrapper}>
                   <img 

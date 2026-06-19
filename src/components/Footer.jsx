@@ -1,13 +1,34 @@
+// Footer.jsx - Updated with route-aware navigation
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { CContainer, CRow, CCol } from '@coreui/react';
 import styles from '../css/Footer.module.css';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Check if we're on the home page
+  const isHomePage = location.pathname === '/';
+
   const scrollToSection = (sectionId) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+    if (isHomePage) {
+      // If on home page, just scroll
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If on another page, navigate to home page first
+      navigate('/');
+      // Wait for navigation to complete then scroll
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
     }
   };
 
@@ -25,7 +46,14 @@ function Footer() {
         <CRow className="align-items-center gy-4">
           {/* Left Column - Name */}
           <CCol lg={12} md={12} className="text-center">
-            <img src={`${process.env.PUBLIC_URL}/images/logo-white.png`} alt="Logo" width={178} height={57} />
+            <img 
+              src={`${process.env.PUBLIC_URL}/images/logo-white.png`} 
+              alt="Logo" 
+              width={178} 
+              height={57}
+              onClick={() => scrollToSection('home')}
+              style={{ cursor: 'pointer' }}
+            />
           </CCol>
 
           {/* Center Column - Navigation Links */}

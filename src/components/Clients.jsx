@@ -58,7 +58,7 @@ function Clients() {
         {/* Clients Grid - 4 columns */}
         <CRow className={styles.clientsGrid}>
           {clientList.map((client) => (
-            <CCol key={client.id} md={6} lg={3} className="mb-4">
+            <CCol key={client.id} md={6} lg={3} xs={6} className="mb-4">
               <div className={styles.clientCard}>
                 {/* Row 1: Image (left) + Quote Icon (right) */}
                 <div className={styles.rowTop}>
