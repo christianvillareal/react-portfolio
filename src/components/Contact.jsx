@@ -12,14 +12,14 @@ function Contact() {
     option: '',
     message: ''
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
   // Determine which API URL to use based on environment
-  const API_URL = process.env.NODE_ENV === 'development' 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || (process.env.NODE_ENV === 'development'
     ? 'http://localhost:3001'  // Local backend for development
-    : 'https://portfolio-backend.onrender.com'; // Production backend on Render
+    : 'https://portfolio-backend.onrender.com'); // Production backend on Render
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +32,7 @@ function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validation
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.option || !formData.message) {
       setSubmitStatus({ type: 'error', message: 'Please fill in all required fields.' });
@@ -48,23 +48,21 @@ function Contact() {
     setSubmitStatus({ type: '', message: '' });
 
     try {
-      console.log('Sending to:', `${API_URL}/api/contact`);
-      console.log('Data:', formData);
-
-      const response = await fetch(`${API_URL}/api/contact`, {
+      const response = await fetch(`${API_URL.replace(/\/$/, '')}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+        signal: AbortSignal.timeout(60000),
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => null);
 
-      if (response.ok) {
-        setSubmitStatus({ 
-          type: 'success', 
-          message: 'Thank you! Your message has been sent successfully. I\'ll get back to you soon.' 
+      if (response.ok && data?.success === true) {
+        setSubmitStatus({
+          type: 'success',
+          message: 'Thank you! Your message has been sent successfully. I\'ll get back to you soon.'
         });
         // Reset form
         setFormData({
@@ -76,23 +74,18 @@ function Contact() {
           message: ''
         });
       } else {
-        throw new Error(data.error || 'Failed to send message');
+        throw new Error(data?.error || 'The contact service is unavailable. Please try again later or email chanix.webdesigns@gmail.com.');
       }
     } catch (error) {
-      console.error('Error:', error);
-      setSubmitStatus({ 
-        type: 'error', 
-        message: `Sorry, there was an error sending your message. ${error.message}` 
+      setSubmitStatus({
+        type: 'error',
+        message: error instanceof TypeError || error.name === 'TimeoutError'
+          ? 'Unable to reach the contact service. Please try again later or email chanix.webdesigns@gmail.com.'
+          : error.message,
       });
     } finally {
       setIsSubmitting(false);
-      
-      // Auto-hide success message after 5 seconds
-      setTimeout(() => {
-        if (submitStatus.type === 'success') {
-          setSubmitStatus({ type: '', message: '' });
-        }
-      }, 5000);
+
     }
   };
 
@@ -122,7 +115,7 @@ function Contact() {
             <div className={styles.formWrapper}>
               {/* Status Messages */}
               {submitStatus.message && (
-                <div className={`${styles.statusMessage} ${styles[submitStatus.type]}`}>
+                <div role={submitStatus.type === 'error' ? 'alert' : 'status'} className={`${styles.statusMessage} ${styles[submitStatus.type]}`}>
                   {submitStatus.message}
                 </div>
               )}
@@ -232,10 +225,10 @@ function Contact() {
               <div>
                 <div className={styles.infoItem}>
                   <div className={styles.infoIcon}>
-                    <img 
-                      src={`${process.env.PUBLIC_URL}/images/call-icon.png`} 
-                      alt="Phone Icon" 
-                      width={24} 
+                    <img
+                      src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/call-icon.png`}
+                      alt="Phone Icon"
+                      width={24}
                       height={24}
                     />
                   </div>
@@ -247,10 +240,10 @@ function Contact() {
 
                 <div className={styles.infoItem}>
                   <div className={styles.infoIcon}>
-                    <img 
-                      src={`${process.env.PUBLIC_URL}/images/message-icon.png`} 
-                      alt="Email Icon" 
-                      width={24} 
+                    <img
+                      src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/message-icon.png`}
+                      alt="Email Icon"
+                      width={24}
                       height={24}
                     />
                   </div>
@@ -262,10 +255,10 @@ function Contact() {
 
                 <div className={styles.infoItem}>
                   <div className={styles.infoIcon}>
-                    <img 
-                      src={`${process.env.PUBLIC_URL}/images/map-icon.png`} 
-                      alt="Map Icon" 
-                      width={24} 
+                    <img
+                      src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/map-icon.png`}
+                      alt="Map Icon"
+                      width={24}
                       height={24}
                     />
                   </div>

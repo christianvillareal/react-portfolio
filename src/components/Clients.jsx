@@ -3,7 +3,7 @@ import { CContainer, CRow, CCol } from '@coreui/react';
 import styles from '../css/Clients.module.css';
 
 const QuoteIcon = () => (
-  <img src={`${process.env.PUBLIC_URL}/images/quote.svg`} alt="Quote Icon" className={styles.quoteIcon} />
+  <img src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/quote.svg`} alt="Quote Icon" className={styles.quoteIcon} />
 );
 
 function Clients() {
@@ -13,7 +13,7 @@ function Clients() {
       name: 'Zephario Lantavon',
       role: 'Business Coordinator',
       quote: 'The web app exceeded our expectations in every way. It\'s fast, user-friendly, and looks fantastic. Highly recommend!',
-      imageSrc: `${process.env.PUBLIC_URL}/images/clients-01.png`,
+      imageSrc: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/clients-01.png`,
       imageAlt: 'Zephario Lantavon',
     },
     {
@@ -21,7 +21,7 @@ function Clients() {
       name: 'Ryderen Mirkovian',
       role: 'Business Coordinator',
       quote: 'The web app development process was seamless, thanks to Christian. The final product is professional, reliable, and impressive.',
-      imageSrc: `${process.env.PUBLIC_URL}/images/clients-02.png`,
+      imageSrc: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/clients-02.png`,
       imageAlt: 'Ryderen Mirkovian',
     },
     {
@@ -29,7 +29,7 @@ function Clients() {
       name: 'Elyndra Virelsa',
       role: 'Business Coordinator',
       quote: 'Our new web app is a game-changer for our business. Christian delivered exactly what we needed and more.',
-      imageSrc: `${process.env.PUBLIC_URL}/images/clients-03.png`,
+      imageSrc: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/clients-03.png`,
       imageAlt: 'Elyndra Virelsa',
     },
     {
@@ -37,7 +37,7 @@ function Clients() {
       name: 'Thaelina Dravose',
       role: 'Business Coordinator',
       quote: 'Exceptional work! The web app is intuitive and beautifully designed. Christian truly understood our vision and brought it to life.',
-      imageSrc: `${process.env.PUBLIC_URL}/images/clients-04.png`,
+      imageSrc: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/clients-04.png`,
       imageAlt: 'Thaelina Dravose',
     },
   ];
@@ -63,8 +63,8 @@ function Clients() {
                 {/* Row 1: Image (left) + Quote Icon (right) */}
                 <div className={styles.rowTop}>
                   <div className={styles.clientImageWrapper}>
-                    <img 
-                      src={client.imageSrc} 
+                    <img
+                      src={client.imageSrc}
                       alt={client.imageAlt}
                       className={styles.clientImage}
                       onError={(e) => {
@@ -76,12 +76,12 @@ function Clients() {
                     <QuoteIcon />
                   </div>
                 </div>
-                
+
                 {/* Row 2: Quote Text - 100% width */}
                 <div className={styles.quoteTextWrapper}>
                   <p className={styles.quoteText}>"{client.quote}"</p>
                 </div>
-                
+
                 {/* Row 3: Client Info - 100% width */}
                 <div className={styles.clientInfo}>
                   <h5 className={styles.clientName}>{client.name}</h5>

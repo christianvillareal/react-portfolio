@@ -1,6 +1,6 @@
 .contactSection {
   padding: 80px 0;
-  background: url(/public/images/contact-bg.png);
+  background: var(--contact-image);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -305,8 +305,8 @@
 }
 
 
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) { 
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) {
   .infoValue {
     font-size: 22px;
   }
- } 
+ }

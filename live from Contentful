@@ -1,0 +1,41 @@
+ .env.example                      |     6 [32m+[m
+ .gitignore                        |     5 [32m+[m
+ README.md                         |    71 [32m+[m[31m-[m
+ generate-sitemap.js               |   189 [32m+[m[31m-[m
+ next.config.js                    |    15 [32m+[m
+ package-lock.json                 | 21786 [32m+++++[m[31m-------------------------------[m
+ package.json                      |    38 [32m+[m[31m-[m
+ public/.nojekyll                  |     0
+ public/404.html                   |    29 [31m-[m
+ public/index.html                 |   132 [31m-[m
+ public/robots.txt                 |     2 [32m+[m[31m-[m
+ public/sitemap.xml                |   584 [32m+[m[31m-[m
+ scripts/start-dev.cjs             |    56 [32m+[m
+ scripts/verify-export.cjs         |    19 [32m+[m
+ src/components/Clients.jsx        |    18 [32m+[m[31m-[m
+ src/components/Contact.jsx        |    71 [32m+[m[31m-[m
+ src/components/Experience.jsx     |     4 [32m+[m[31m-[m
+ src/components/Footer.jsx         |    29 [32m+[m[31m-[m
+ src/components/Header.jsx         |    31 [32m+[m[31m-[m
+ src/components/News.jsx           |    64 [32m+[m[31m-[m
+ src/components/ProjectDetails.jsx |   147 [32m+[m[31m-[m
+ src/components/Projects.jsx       |   164 [32m+[m[31m-[m
+ src/components/SEO.jsx            |    54 [32m+[m[31m-[m
+ src/components/Services.jsx       |    18 [32m+[m[31m-[m
+ src/components/Skills.jsx         |    18 [32m+[m[31m-[m
+ src/components/TopFold.jsx        |    30 [32m+[m[31m-[m
+ src/css/Contact.module.css        |     6 [32m+[m[31m-[m
+ src/css/Project.module.css        |   154 [32m+[m[31m-[m
+ src/css/global.css                |     2 [32m+[m[31m-[m
+ src/index.js                      |    20 [31m-[m
+ src/lib/projects.js               |    53 [32m+[m
+ src/lib/site.js                   |     9 [32m+[m
+ src/pages/404.jsx                 |     3 [32m+[m
+ src/pages/_app.jsx                |    11 [32m+[m
+ src/pages/_document.jsx           |     9 [32m+[m
+ src/pages/api/robots.js           |     6 [32m+[m
+ src/pages/api/sitemap.js          |    22 [32m+[m
+ src/{App.js => pages/index.jsx}   |    85 [32m+[m[31m-[m
+ src/pages/project/[id].jsx        |     8 [32m+[m
+ src/reportWebVitals.js            |    13 [31m-[m
+ 40 files changed, 3359 insertions(+), 20622 deletions(-)

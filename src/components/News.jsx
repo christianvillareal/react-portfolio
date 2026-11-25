@@ -7,23 +7,21 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
 
 // Arrow icon for read more
 const ArrowIcon = () => (
-  <svg 
-    width="16" 
-    height="16" 
-    viewBox="0 0 24 24" 
-    fill="none" 
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path 
-      d="M5 12H19M19 12L13 6M19 12L13 18" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
+    <path
+      d="M5 12H19M19 12L13 6M19 12L13 18"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
       strokeLinejoin="round"
     />
   </svg>
@@ -169,7 +167,7 @@ function News() {
         { url: 'https://api.rss2json.com/v1/api.json?rss_url=https://www.wired.com/feed/rss', source: 'Wired' },
         { url: 'https://api.rss2json.com/v1/api.json?rss_url=https://www.smashingmagazine.com/feed/', source: 'Smashing Magazine' }
       ];
-      
+
       const responses = await Promise.all(
         techFeeds.map(async (feed) => {
           try {
@@ -182,16 +180,16 @@ function News() {
           }
         })
       );
-      
+
       let allArticles = [];
       let articleIndex = 0;
-      
+
       responses.forEach(({ data, source }) => {
         if (data && data.items) {
           const articles = data.items.slice(0, 3).map((item) => {
             articleIndex++;
             let imageUrl = '';
-            
+
             if (item.thumbnail) {
               imageUrl = item.thumbnail;
             }
@@ -204,24 +202,24 @@ function News() {
                 imageUrl = imgMatch[1];
               }
             }
-            
+
             // Use different fallback image for each article
             if (!imageUrl || imageUrl === '') {
               imageUrl = getRandomFallbackImage(articleIndex);
             }
-            
+
             return {
               id: `${source}-${item.pubDate}`,
               title: item.title?.length > 70 ? item.title.substring(0, 70) + '...' : item.title,
-              description: item.description ? 
-                (item.description.replace(/<[^>]*>/g, '').substring(0, 130) + '...') : 
+              description: item.description ?
+                (item.description.replace(/<[^>]*>/g, '').substring(0, 130) + '...') :
                 'We put your ideas and thus your wishes in the form of a unique web experience that drives results.',
               imageSrc: imageUrl,
               imageAlt: item.title,
-              date: new Date(item.pubDate).toLocaleDateString('en-US', { 
-                month: 'short', 
-                day: 'numeric', 
-                year: 'numeric' 
+              date: new Date(item.pubDate).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
               }),
               link: item.link,
               source: source
@@ -230,11 +228,11 @@ function News() {
           allArticles = [...allArticles, ...articles];
         }
       });
-      
+
       if (allArticles.length === 0) {
         throw new Error('No articles fetched');
       }
-      
+
       setNews(allArticles.slice(0, 9));
     } catch (err) {
       console.error('Error fetching news:', err);
@@ -256,7 +254,7 @@ function News() {
             <CCol md={12}>
               <h1 className={styles.title}>Latest News & Blogs</h1>
               <h4 className={styles.subtitle}>
-                Explore our recent articles and news to keep informed about new developments, 
+                Explore our recent articles and news to keep informed about new developments,
                 expert opinions, and innovative solutions.
               </h4>
             </CCol>
@@ -281,7 +279,7 @@ function News() {
           <CCol md={12}>
             <h1 className={styles.title}>Latest News & Blogs</h1>
             <h4 className={styles.subtitle}>
-              Explore our recent articles and news to keep informed about new developments, 
+              Explore our recent articles and news to keep informed about new developments,
               expert opinions, and innovative solutions.
             </h4>
           </CCol>
@@ -321,8 +319,8 @@ function News() {
               <SwiperSlide key={item.id}>
                 <div className={styles.newsCard}>
                   <div className={styles.newsImageWrapper}>
-                    <img 
-                      src={item.imageSrc} 
+                    <img
+                      src={item.imageSrc}
                       alt={item.imageAlt}
                       className={styles.newsImage}
                       onError={(e) => {
@@ -338,8 +336,8 @@ function News() {
                   <div className={styles.newsContent}>
                     <h3 className={styles.newsTitle}>{item.title}</h3>
                     <p className={styles.newsDescription}>{item.description}</p>
-                    <a 
-                      href={item.link} 
+                    <a
+                      href={item.link}
                       className={styles.readMoreLink}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -352,7 +350,7 @@ function News() {
               </SwiperSlide>
             ))}
           </Swiper>
-          
+
           {/* Custom Navigation Arrows - Bottom Right */}
           <div className={styles.customNavigation}>
             <div className="swiper-button-prev-custom">

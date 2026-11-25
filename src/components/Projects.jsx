@@ -1,34 +1,32 @@
 // Project.jsx - With responsive category filter (dropdown on mobile)
 import React, { useState, useEffect, useRef } from 'react';
 import { CContainer, CRow, CCol } from '@coreui/react';
-import { useNavigate } from 'react-router-dom';
+import Link from 'next/link';
+import { plainText } from '../lib/site';
 import styles from '../css/Project.module.css';
-import { createClient } from 'contentful';
 
-// Contentful client setup
-const client = createClient({
-  space: '7wddt967mgfr',
-  accessToken: 'HDc3S_flilPqMp3DMm0LTOMpUWIhlDnLdjeTn8nyekY',
-});
 
-function Projects() {
-  const navigate = useNavigate();
+
+
+function Projects({ initialProjects = [] }) {
+  const projectData = initialProjects.map(p => ({...p, description:plainText(p.description), imageUrl:p.images[0] || ''}));
+
   const [activeIndex, setActiveIndex] = useState(0);
-  const [projectLists, setProjectLists] = useState([]);
-  const [filteredProjects, setFilteredProjects] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [categories, setCategories] = useState([]);
+  const [projectLists] = useState(projectData);
+  const [filteredProjects, setFilteredProjects] = useState(projectData);
+  const isLoading = false;
+  const [categories] = useState([...new Set(projectData.flatMap(p => p.categories))]);
   const categoryScrollRef = useRef(null);
   const projectsGridRef = useRef(null);
-  
+
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const [projectsPerPage] = useState(6);
-  
+
   // Dropdown state for mobile
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-  
+
   // Reset page when category changes
   useEffect(() => {
     setCurrentPage(1);
@@ -41,17 +39,13 @@ function Projects() {
         setIsDropdownOpen(false);
       }
     };
-    
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   // Truncate text based on screen size
-  const getTruncateLength = () => {
-    if (window.innerWidth <= 576) return 60;
-    if (window.innerWidth <= 768) return 80;
-    return 100;
-  };
+  const getTruncateLength = () => 100;
 
   const truncateText = (text, maxLength = null) => {
     if (!text) return '';
@@ -60,53 +54,12 @@ function Projects() {
     return text.substring(0, length) + '...';
   };
 
-  // Helper function to extract description from rich text
-  const extractDescription = (richText) => {
-    if (!richText) return '';
-    if (typeof richText === 'string') return richText;
-    
-    let fullText = '';
-    
-    const extractText = (node) => {
-      if (node.nodeType === 'text') {
-        return node.value || '';
-      }
-      
-      if (node.content) {
-        let text = '';
-        for (const child of node.content) {
-          text += extractText(child);
-        }
-        if (node.nodeType === 'paragraph' && text) {
-          text += ' ';
-        }
-        return text;
-      }
-      
-      return '';
-    };
-    
-    if (richText.content) {
-      for (const node of richText.content) {
-        fullText += extractText(node);
-      }
-    }
-    
-    return fullText.trim();
-  };
-
-  // Get unique categories from projects
-  const getUniqueCategories = (projects) => {
-    const allCategories = projects.flatMap(project => project.categories || []);
-    return [...new Set(allCategories)];
-  };
-
   // Filter projects based on selected category
   const filterProjects = (category) => {
     if (category === 'All Designs' || category === 'All') {
       setFilteredProjects(projectLists);
     } else {
-      const filtered = projectLists.filter(project => 
+      const filtered = projectLists.filter(project =>
         project.categories && project.categories.includes(category)
       );
       setFilteredProjects(filtered);
@@ -117,7 +70,7 @@ function Projects() {
     setActiveIndex(index);
     filterProjects(categoryName);
     setIsDropdownOpen(false); // Close dropdown after selection on mobile
-    
+
     // Scroll category into view on mobile
     if (window.innerWidth <= 768 && categoryScrollRef.current) {
       const activeElement = categoryScrollRef.current.children[index];
@@ -131,10 +84,7 @@ function Projects() {
     }
   };
 
-  // Navigate to project details page
-  const handleReadMore = (projectId) => {
-    navigate(`/project/${projectId}`);
-  };
+
 
   // Pagination logic
   const indexOfLastProject = currentPage * projectsPerPage;
@@ -165,7 +115,7 @@ function Projects() {
   const getPageNumbers = () => {
     const pageNumbers = [];
     const maxPagesToShow = 5;
-    
+
     if (totalPages <= maxPagesToShow) {
       for (let i = 1; i <= totalPages; i++) {
         pageNumbers.push(i);
@@ -193,59 +143,9 @@ function Projects() {
         pageNumbers.push(totalPages);
       }
     }
-    
+
     return pageNumbers;
   };
-
-  useEffect(() => {
-    setIsLoading(true);
-    
-    client.getEntries({ content_type: 'cvProjects' })
-      .then((response) => {
-        console.log("Contentful API Response:", response);
-        
-        const projectData = response.items.map((item) => {
-          let imageUrl = '';
-          if (item.fields.image && item.fields.image[0]) {
-            imageUrl = `https:${item.fields.image[0]?.fields?.file?.url || ''}`;
-          }
-          
-          let description = extractDescription(item.fields.description);
-          
-          let projectCategories = [];
-          if (item.fields.categories) {
-            if (Array.isArray(item.fields.categories)) {
-              projectCategories = item.fields.categories;
-            } else if (typeof item.fields.categories === 'string') {
-              projectCategories = [item.fields.categories];
-            }
-          }
-          
-          return {
-            id: item.sys.id,
-            title: item.fields.title || 'Untitled',
-            description: description,
-            categories: projectCategories,
-            imageUrl: imageUrl,
-            date: item.fields.date || '',
-          };
-        });
-
-        setProjectLists(projectData);
-        setFilteredProjects(projectData);
-        
-        const uniqueCats = getUniqueCategories(projectData);
-        setCategories(uniqueCats);
-        
-        setIsLoading(false);
-        console.log("Processed Projects:", projectData);
-        console.log("Unique Categories:", uniqueCats);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-        setIsLoading(false);
-      });
-  }, []);
 
   const categoryList = ['All Designs', ...categories];
   const currentCategory = categoryList[activeIndex];
@@ -283,7 +183,7 @@ function Projects() {
 
             {/* Mobile View - Dropdown Filter */}
             <div className={styles.categoryWrapperMobile} ref={dropdownRef}>
-              <button 
+              <button
                 className={styles.dropdownButton}
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               >
@@ -292,7 +192,7 @@ function Projects() {
                   <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </button>
-              
+
               {isDropdownOpen && (
                 <ul className={styles.dropdownMenu}>
                   {categoryList.map((category, index) => (
@@ -334,11 +234,11 @@ function Projects() {
             <div ref={projectsGridRef}>
               <CRow className={styles.projectsGrid}>
                 {currentProjects.map((project) => (
-                  <CCol 
-                    key={project.id} 
-                    lg={4} 
-                    md={6} 
-                    sm={12} 
+                  <CCol
+                    key={project.id}
+                    lg={4}
+                    md={6}
+                    sm={12}
                     xs={6}
                     className={styles.projectColumn}
                   >
@@ -356,7 +256,7 @@ function Projects() {
                           </span>
                         )}
                       </div>
-                      
+
                       <div className={styles.projectInfo}>
                         <h4 className={styles.name}>{project.title}</h4>
                         {project.description && (
@@ -365,15 +265,13 @@ function Projects() {
                           </p>
                         )}
                         <div className={styles.linkWrapper}>
-                          <button 
-                            className={styles.readMoreBtn}
-                            onClick={() => handleReadMore(project.id)}
+                          <Link className={styles.readMoreBtn} href={`/project/${project.id}/`}
                           >
                             Read More
                             <svg className={styles.btnIcon} width="16" height="16" viewBox="0 0 24 24" fill="none">
                               <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
-                          </button>
+                          </Link>
                         </div>
                       </div>
                     </div>
