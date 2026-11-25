@@ -1,50 +1,15 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SEO from './components/SEO';
-
-//Import Core UI and Bootstrap
-import '@coreui/coreui/dist/css/coreui.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-//Import Global Styles
-import './css/global.css';
-
-//Import Components
-import Header from './components/Header';
-import TopFold from './components/TopFold';
-import Services from './components/Services';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
-import Skills from './components/Skills';
-import Clients from './components/Clients';
-import News from './components/News';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import ProjectDetails from './components/ProjectDetails';
-
-const getBasename = () => {
-  const publicUrl = process.env.PUBLIC_URL || '/';
-
-  try {
-    const pathname = new URL(publicUrl, window.location.origin).pathname;
-    return pathname.replace(/\/$/, '') || '/';
-  } catch {
-    return publicUrl.replace(/\/$/, '') || '/';
-  }
-};
-
-function App() {
-  const basename = getBasename();
-
-  return (
-    <Router basename={basename}>
-      <div>
-        <Header />
-        
-        <Routes>
-          {/* Home Route */}
-          <Route path="/" element={
-            <>
+import SEO from '../components/SEO';
+import TopFold from '../components/TopFold';
+import Services from '../components/Services';
+import Projects from '../components/Projects';
+import Experience from '../components/Experience';
+import Skills from '../components/Skills';
+import Clients from '../components/Clients';
+import News from '../components/News';
+import Contact from '../components/Contact';
+import { getProjects } from '../lib/projects';
+import { plainText } from '../lib/site';
+export default function Home({ projects }) { return (<>
               <SEO 
                 title="Christian Villareal | Frontend Developer & UI/UX Designer"
                 description="Frontend Developer specializing in modern web apps. View my projects in web design, development, and UX/UI. Based in Cebu, Philippines."
@@ -66,7 +31,7 @@ function App() {
                 
                 {/* Projects/Works Section - matches Header nav "Projects" and Footer nav "Works" */}
                 <section id="projects">
-                  <Projects />
+                  <Projects initialProjects={projects} />
                 </section>
                 
                 {/* Experience Section - matches Footer nav "Experience" */}
@@ -96,17 +61,15 @@ function App() {
               <section id="contact">
                 <Contact />
               </section>
-            </>
-          } />
-          
-          {/* Project Details Route */}
-          <Route path="/project/:id" element={<ProjectDetails />} />
-        </Routes>
-        
-        <Footer />
-      </div>
-    </Router>
-  );
+            </>); }
+export async function getServerSideProps({ res }) {
+  res.setHeader('Cache-Control', 'no-store');
+  const projects = (await getProjects()).map(({ id, title, description, categories, images }) => ({
+    id,
+    title,
+    description: plainText(description).slice(0, 160),
+    categories,
+    images: images.slice(0, 1),
+  }));
+  return { props: { projects } };
 }
-
-export default App;

@@ -35,7 +35,7 @@ const experiences = [
 function Experience() {
   // Background image style with PUBLIC_URL
   const cardBackgroundStyle = {
-    backgroundImage: `url(${process.env.PUBLIC_URL}/images/exp-shape.png)`,
+    backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/exp-shape.png)`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'left top',
     backgroundSize: '61px',
@@ -55,7 +55,7 @@ function Experience() {
       <CRow className="g-4">
         {experiences.map((exp) => (
           <CCol key={exp.id} md={6} xs={6}>
-            
+
             <div className={styles.card} style={cardBackgroundStyle}>
               <h4 className={styles.period}>{exp.period}</h4>
               <h2 className={styles.title2}>{exp.title}</h2>

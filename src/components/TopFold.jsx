@@ -11,19 +11,19 @@ function TopFold() {
 
   // Function to open resume in new tab
   const openResume = () => {
-    window.open(`${process.env.PUBLIC_URL}/resume.pdf`, '_blank');
+    window.open(`${process.env.NEXT_PUBLIC_BASE_PATH}/resume.pdf`, '_blank');
   };
 
   // State for number shuffling animation
   const [yearsExp, setYearsExp] = useState(0);
   const [projectsCompleted, setProjectsCompleted] = useState(0);
   const [happyClients, setHappyClients] = useState(0);
-  
+
   // State for typewriter animation
   const [currentRole, setCurrentRole] = useState('Developer');
   const [isDeleting, setIsDeleting] = useState(false);
   const [typedText, setTypedText] = useState('');
-  
+
   const targetYears = 9;
   const targetProjects = 99;
   const targetClients = 35;
@@ -71,7 +71,7 @@ function TopFold() {
   useEffect(() => {
     let timeout;
     const currentFullText = currentRole;
-    
+
     if (isDeleting) {
       if (typedText.length > 0) {
         timeout = setTimeout(() => {
@@ -94,7 +94,7 @@ function TopFold() {
         }, 2000);
       }
     }
-    
+
     return () => clearTimeout(timeout);
   }, [typedText, isDeleting, currentRole]);
 
@@ -125,20 +125,20 @@ function TopFold() {
             <CCol lg={5} md={5} className={`text-end ${styles.rightCol}`}>
                 {/* Image - Send to back with lower z-index */}
                 <div className={styles.imageWrapper}>
-                  <img 
-                    src={`${process.env.PUBLIC_URL}/images/christian-villareal.png`} 
-                    className={`img-fluid ${styles.profileImage} fade-in-up-delay-1`} 
-                    alt='Christian Villareal' 
-                    width={458} 
-                    height={527} 
+                  <img
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/christian-villareal.png`}
+                    className={`img-fluid ${styles.profileImage} fade-in-up-delay-1`}
+                    alt='Christian Villareal'
+                    width={458}
+                    height={527}
                   />
                 </div>
-                
+
                 {/* White Box - Forward with higher z-index and animation */}
                 <div className={`${styles.whiteBox} fade-in-up-whitebox`}>
                     <CRow>
                         <CCol className='text-start'>
-                            <img src={`${process.env.PUBLIC_URL}/images/5-star.png`} className='img-fluid' alt='5 Star' />
+                            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/5-star.png`} className='img-fluid' alt='5 Star' />
                         </CCol>
                         <CCol>
                             <h5 className={`${styles.fiveStar}`}>5.0 RATINGS</h5>
@@ -174,7 +174,7 @@ function TopFold() {
                     </CCol>
                 </CRow>
             </CCol>
-            
+
             <CCol md={4} xs={4}>
                 <CRow className={styles.statRow}>
                     <CCol className='my-auto' md={6} xs={12}>
@@ -188,7 +188,7 @@ function TopFold() {
                     </CCol>
                 </CRow>
             </CCol>
-            
+
             <CCol md={4} xs={4}>
                 <CRow className={styles.statRow}>
                     <CCol className='my-auto' md={7} xs={12}>
