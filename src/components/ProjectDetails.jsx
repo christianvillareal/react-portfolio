@@ -1,9 +1,8 @@
 // ProjectDetails.jsx - With Proper Rich Text Rendering
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { CContainer, CRow, CCol } from '@coreui/react';
-import Link from 'next/link';
-import { plainText } from '../lib/site';
-
+import { useParams, useNavigate } from 'react-router-dom';
+import { createClient } from 'contentful';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -13,8 +12,14 @@ import styles from '../css/ProjectDetails.module.css';
 import SEO from './SEO';
 
 // Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
 
-
+// Contentful client setup
+const client = createClient({
+  space: '7wddt967mgfr',
+  accessToken: 'HDc3S_flilPqMp3DMm0LTOMpUWIhlDnLdjeTn8nyekY',
+});
 
 const particleOptions = {
   fullScreen: false,
@@ -97,14 +102,18 @@ function Particles({ options }) {
   return <div ref={ref} className={styles.particlesWrapper} aria-hidden="true" />;
 }
 
-function ProjectDetails({ project }) {
-  const id = project.id;
+function ProjectDetails() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [project, setProject] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const swiperRef = useRef(null);
-
+  
   // Lightbox state
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const imageCount = project?.images?.length || 0;
+
 
   // Custom rich text renderer options
   const richTextOptions = {
@@ -151,7 +160,7 @@ function ProjectDetails({ project }) {
   const prevImage = useCallback(() => {
     if (!imageCount) return;
 
-    setCurrentImageIndex((prev) =>
+    setCurrentImageIndex((prev) => 
       prev === 0 ? imageCount - 1 : prev - 1
     );
   }, [imageCount]);
@@ -160,7 +169,7 @@ function ProjectDetails({ project }) {
   const nextImage = useCallback(() => {
     if (!imageCount) return;
 
-    setCurrentImageIndex((prev) =>
+    setCurrentImageIndex((prev) => 
       prev === imageCount - 1 ? 0 : prev + 1
     );
   }, [imageCount]);
@@ -169,7 +178,7 @@ function ProjectDetails({ project }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (!lightboxOpen) return;
-
+      
       if (e.key === 'Escape') {
         closeLightbox();
       } else if (e.key === 'ArrowLeft') {
@@ -178,32 +187,106 @@ function ProjectDetails({ project }) {
         nextImage();
       }
     };
-
+    
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [closeLightbox, lightboxOpen, nextImage, prevImage]);
 
+  // Fetch project data
+  useEffect(() => {
+    setIsLoading(true);
+    
+    client.getEntries({ content_type: 'cvProjects', 'sys.id': id })
+      .then((response) => {
+        if (response.items.length > 0) {
+          const item = response.items[0];
+          
+          const images = item.fields.image?.map(img => `https:${img.fields.file.url}`) || [];
+          const categories = Array.isArray(item.fields.categories) 
+            ? item.fields.categories 
+            : item.fields.categories ? [item.fields.categories] : [];
+          
+          setProject({
+            id: item.sys.id,
+            title: item.fields.title || 'Untitled',
+            description: item.fields.description, // Keep as rich text object
+            categories,
+            images,
+            date: item.fields.date || '',
+          });
+        }
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching project:', error);
+        setIsLoading(false);
+      });
+  }, [id]);
+
+  if (isLoading) {
+    return (
+      <>
+      <SEO 
+          title="Loading Project | Christian Villareal"
+          description="Loading project details..."
+          url={`/project/${id}`}
+        />
+      <div className={styles.loadingContainer}>
+        <div className={styles.loader}>
+          <div className={styles.spinner}></div>
+          <p>Loading project...</p>
+        </div>
+      </div>
+      </>
+    );
+  }
+
+  if (!project) {
+    return (
+      <>
+       <SEO 
+          title="Project Not Found | Christian Villareal"
+          description="The project you're looking for could not be found."
+          url={`/project/${id}`}
+        />
+      <div className={styles.errorContainer}>
+        <div className={styles.errorContent}>
+          <div className={styles.errorIcon}>🔍</div>
+          <h2>Project Not Found</h2>
+          <p>Sorry, we couldn't find the project you're looking for.</p>
+          <button onClick={() => navigate('/')} className={styles.backHomeBtn}>
+            Back to Home
+          </button>
+        </div>
+      </div>
+      </>
+    );
+  }
+
   return (
     <>
-    <SEO
+    <SEO 
         title={`${project.title} | Christian Villareal Portfolio`}
-        description={plainText(project.description).substring(0, 160) || `View ${project.title} by Christian Villareal.`}
+        description={typeof project.description === 'string' 
+          ? project.description.substring(0, 160) 
+          : `Check out ${project.title} - a project by Christian Villareal, React Developer and UI/UX Designer.`
+        }
         keywords={`${project.categories?.join(', ') || 'project'}, portfolio, React, web design, development`}
-        image={project.images?.[0] || `${process.env.NEXT_PUBLIC_BASE_PATH}/og-image.jpg`}
+        image={project.images?.[0] || `${process.env.PUBLIC_URL}/images/og-image.png`}
         url={`/project/${id}`}
         type="article"
       />
-
+      
     <div className={styles.projectDetails}>
       {/* Hero Section with Particles - ONLY in header */}
       <div className={styles.heroSection}>
         <Particles options={particleOptions} />
-
+        
         <div className={styles.heroOverlay}>
           <CContainer>
-            <Link href="/#projects" className={styles.backButton}>
+            <button onClick={() => navigate(-1)} className={styles.backButton}>
               ← Back to Projects
-            </Link>
+            </button>
             <div className={styles.heroContent}>
               <span className={styles.heroCategory}>
                 {project.categories[0]}
@@ -246,7 +329,7 @@ function ProjectDetails({ project }) {
           >
             {project.images.map((img, idx) => (
               <SwiperSlide key={idx}>
-                <div
+                <div 
                   className={styles.slideItem}
                   onClick={() => openLightbox(idx)}
                 >
@@ -262,10 +345,10 @@ function ProjectDetails({ project }) {
               </SwiperSlide>
             ))}
           </Swiper>
-
+          
           {project.images.length > 3 && (
             <div className={styles.navigationArrows}>
-              <button
+              <button 
                 className={styles.navArrow}
                 onClick={() => swiperRef.current?.swiper?.slidePrev()}
               >
@@ -273,7 +356,7 @@ function ProjectDetails({ project }) {
                   <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </button>
-              <button
+              <button 
                 className={styles.navArrow}
                 onClick={() => swiperRef.current?.swiper?.slideNext()}
               >
@@ -295,9 +378,9 @@ function ProjectDetails({ project }) {
                 </div>
                 <div className={styles.projectDescription}>
                   {/* Use rich text renderer instead of plain text */}
-                  {typeof project.description === 'string' ? <p>{project.description}</p> : documentToReactComponents(project.description, richTextOptions)}
+                  {documentToReactComponents(project.description, richTextOptions)}
                 </div>
-
+                
                 <div className={styles.techSection}>
                   <h3>Technologies Used</h3>
                   <div className={styles.tagsContainer}>
@@ -320,8 +403,8 @@ function ProjectDetails({ project }) {
               <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
             </svg>
           </button>
-
-          <button
+          
+          <button 
             className={`${styles.lightboxNav} ${styles.lightboxPrev}`}
             onClick={(e) => {
               e.stopPropagation();
@@ -332,10 +415,10 @@ function ProjectDetails({ project }) {
               <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-
+          
           <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
-            <img
-              src={project.images[currentImageIndex]}
+            <img 
+              src={project.images[currentImageIndex]} 
               alt={`${project.title} - ${currentImageIndex + 1}`}
               className={styles.lightboxImage}
             />
@@ -346,8 +429,8 @@ function ProjectDetails({ project }) {
               <span className={styles.lightboxTitle}>{project.title}</span>
             </div>
           </div>
-
-          <button
+          
+          <button 
             className={`${styles.lightboxNav} ${styles.lightboxNext}`}
             onClick={(e) => {
               e.stopPropagation();

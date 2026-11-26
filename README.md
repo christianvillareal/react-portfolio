@@ -1,21 +1,76 @@
-# Christian Villareal Portfolio — Next.js
+# Getting Started with Create React App
 
-The portfolio uses the Next.js Pages Router. The homepage, project detail pages, and sitemap read published Contentful entries on request. New projects appear first by Contentful creation date. Each project has server-rendered HTML with its title, description, canonical URL, and social metadata.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Setup
+## Publish the portfolio
 
-Install dependencies with `npm install`. Copy `.env.example` to `.env.local` and configure the Contentful Delivery API credentials. Keep both Contentful variables server-side. Set `NEXT_PUBLIC_SITE_URL` to the full public portfolio URL, including any path prefix.
+Run `npm ci` to install dependencies and `npm run deploy` to build and publish to the `gh-pages` branch. GitHub Pages serves the portfolio at https://christianvillareal.github.io/react-portfolio/.
 
-Run `npm run dev` to start the portfolio and the local contact backend. With the default URL setting, open http://localhost:3000/react-portfolio/. The backend runs on port 3001 and uses `portfolio-backend/.env` for `RESEND_API_KEY`, `FROM_EMAIL`, and `TO_EMAIL`. If its dependencies are missing, run `npm --prefix portfolio-backend install`.
+The browser fetches published Contentful projects when the portfolio loads and orders them newest first. Publish projects in Contentful and refresh the site to see them. Run a deploy when app code changes or when you want to regenerate the static sitemap.
 
-For the published contact form, set `NEXT_PUBLIC_API_URL` to your working public contact backend URL before building. You can use the same variable locally to test the deployed backend.
+## Available Scripts
 
-## Build and publish
+In the project directory, you can run:
 
-Deploy to a host that runs Next.js with a server, such as a Node web service. Use `npm ci` to install dependencies, `npm run build` to build, and `npm start` to serve the production build. Set the public URL and contact API variables at build time and the Contentful credentials at runtime.
+### `npm start`
 
-GitHub Pages serves static files and cannot run these request-time routes. After the initial server deployment, publish projects in Contentful and refresh the portfolio once the Delivery API serves the changes. Content updates require no new build or deployment.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Google Search Console
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-After deploying, verify the site in Google Search Console and submit `sitemap.xml` at your configured public portfolio URL. The existing Google verification file is available on the site.
+### `npm test`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

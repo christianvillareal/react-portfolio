@@ -7,6 +7,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 
 // Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 function Skills() {
   // Skill data with image icons from public folder
@@ -17,7 +19,7 @@ function Skills() {
       percent: 90,
       description:
         'I am proficient in using Adobe Creative Cloud apps to produce high-quality design work.',
-      iconSrc: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/skills-icon-01.png`,
+      iconSrc: `${process.env.PUBLIC_URL}/images/skills-icon-01.png`,
       iconAlt: 'Creative Cloud Icon',
     },
     {
@@ -26,7 +28,7 @@ function Skills() {
       percent: 45,
       description:
         'I specialize in building dynamic and high-performance web applications using React and Next.js.',
-      iconSrc: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/skills-icon-02.png`,
+      iconSrc: `${process.env.PUBLIC_URL}/images/skills-icon-02.png`,
       iconAlt: 'React Icon',
     },
     {
@@ -35,7 +37,7 @@ function Skills() {
       percent: 50,
       description:
         'I have extensive experience in developing robust web applications using MVC.NET.',
-      iconSrc: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/skills-icon-03.png`,
+      iconSrc: `${process.env.PUBLIC_URL}/images/skills-icon-03.png`,
       iconAlt: 'MVC.NET Icon',
     },
     {
@@ -44,7 +46,7 @@ function Skills() {
       percent: 99,
       description:
         'I have strong expertise in front-end web development using HTML, CSS, and JavaScript.',
-      iconSrc: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/skills-icon-04.png`,
+      iconSrc: `${process.env.PUBLIC_URL}/images/skills-icon-04.png`,
       iconAlt: 'HTML/CSS/JS Icon',
     },
     {
@@ -53,7 +55,7 @@ function Skills() {
       percent: 95,
       description:
         'I am proficient in developing and managing websites using WordPress.',
-      iconSrc: `${process.env.NEXT_PUBLIC_BASE_PATH}/images/skills-icon-05.png`,
+      iconSrc: `${process.env.PUBLIC_URL}/images/skills-icon-05.png`,
       iconAlt: 'WordPress Icon',
     },
   ];
@@ -101,8 +103,8 @@ function Skills() {
               <SwiperSlide key={skill.id}>
                 <div className={styles.skillCard}>
                   <div className={styles.skillIcon}>
-                    <img
-                      src={skill.iconSrc}
+                    <img 
+                      src={skill.iconSrc} 
                       alt={skill.iconAlt}
                       width={60}
                       height={60}
@@ -125,7 +127,7 @@ function Skills() {
               </SwiperSlide>
             ))}
           </Swiper>
-
+          
           {/* Custom Navigation Arrows - Bottom Right */}
           <div className={styles.customNavigation}>
             <div className="swiper-button-prev-custom">

@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { CNavbar, CNavbarBrand, CNavbarNav, CNavItem, CNavbarToggler, CCollapse, CContainer } from '@coreui/react';
 import CustomButton from './CustomButton';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
 
 // IMPORT STYLES
+import '@coreui/coreui/dist/css/coreui.min.css';
 import styles from '../css/Header.module.css';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const router = useRouter();
-
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const toggle = () => setIsOpen(!isOpen);
 
   // Check if we're on the home page
-  const isHomePage = router.pathname === '/';
+  const isHomePage = location.pathname === '/';
 
   // Track which section is in view
   useEffect(() => {
@@ -65,7 +66,15 @@ function Header() {
       setActiveSection(sectionId);
     } else {
       // If on another page, navigate to home page first
-      router.push('/#' + sectionId);
+      navigate('/');
+      // Wait for navigation to complete then scroll
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+        setActiveSection(sectionId);
+      }, 100);
     }
     setIsOpen(false); // Close mobile menu after clicking
   };
@@ -81,14 +90,14 @@ function Header() {
   return (
     <CNavbar expand="lg" className={`${styles.customNav}`}>
       <CContainer>
-        <CNavbarBrand
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection('home');
+        <CNavbarBrand 
+          onClick={(e) => { 
+            e.preventDefault(); 
+            scrollToSection('home'); 
           }}
           style={{ cursor: 'pointer' }}
         >
-          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/logo.png`} alt="Logo" width={178} height={57} />
+          <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="Logo" width={178} height={57} />
         </CNavbarBrand>
         <CNavbarToggler onClick={toggle} aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -97,7 +106,7 @@ function Header() {
           <CNavbarNav className="ms-auto my-auto">
             {navItems.map((item) => (
               <CNavItem key={item.name}>
-                <button
+                <button 
                   onClick={() => scrollToSection(item.id)}
                   className={`${styles.customLink} ${styles.navButton} ${activeSection === item.id ? styles.active : ''}`}
                 >

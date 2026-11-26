@@ -289,17 +289,17 @@
   .projectsWrapper {
     padding: 50px 0;
   }
-
+  
   .ul {
     padding: 18px 25px;
     gap: 8px;
   }
-
+  
   .li {
     padding: 10px 20px;
     font-size: 15px;
   }
-
+  
   .name {
     font-size: 22px;
   }
@@ -310,25 +310,25 @@
   .projectsWrapper {
     padding: 40px 0;
   }
-
+  
   .title {
     font-size: 32px;
   }
-
+  
   .subtitle {
     font-size: 16px;
     line-height: 24px;
     margin-bottom: 30px !important;
   }
-
+  
   .blueBox {
     margin-bottom: 10px;
   }
-
+  
   .categoryWrapper {
     padding: 0;
   }
-
+  
   .ul {
     width: 100%;
     padding: 12px 16px;
@@ -340,67 +340,67 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
   }
-
+  
   /* Custom scrollbar for categories */
   .ul::-webkit-scrollbar {
     height: 3px;
   }
-
+  
   .ul::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 10px;
   }
-
+  
   .ul::-webkit-scrollbar-thumb {
     background: #0C4A6E;
     border-radius: 10px;
   }
-
+  
   .li {
     padding: 8px 18px;
     font-size: 14px;
     white-space: nowrap;
     flex-shrink: 0;
   }
-
+  
   .active {
     transform: scale(1);
   }
-
+  
   .li:hover {
     transform: scale(1);
   }
-
+  
   .projectColumn {
     margin-bottom: 25px;
   }
-
+  
   .projectsGrid {
     margin-top: 30px;
   }
-
+  
   .name {
     font-size: 20px;
     margin-bottom: 8px;
   }
-
+  
   .description {
     font-size: 13px;
     line-height: 1.5;
   }
-
+  
   .categoryBadge {
     top: 10px;
     left: 10px;
     padding: 4px 10px;
     font-size: 10px;
   }
-
+  
   .readMoreBtn {
     padding: 6px 16px;
     font-size: 12px;
   }
-
+  
   .loadMoreBtn {
     padding: 10px 24px;
     font-size: 14px;
@@ -412,79 +412,79 @@
   .projectsWrapper {
     padding: 30px 0;
   }
-
+  
   .title {
     font-size: 28px;
   }
-
+  
   .subtitle {
     font-size: 14px;
     line-height: 22px;
   }
-
+  
   .blueBox {
     margin-bottom: 25px;
   }
-
+  
   .ul {
     padding: 10px 12px;
     gap: 6px;
   }
-
+  
   .li {
     padding: 6px 14px;
     font-size: 12px;
   }
-
+  
   .projectColumn {
     margin-bottom: 20px;
   }
-
+  
   .projectCard {
     margin: 0;
   }
-
+  
   .name {
     font-size: 18px;
   }
-
+  
   .description {
     font-size: 12px;
     line-height: 1.4;
   }
-
+  
   .categoryBadge {
     top: 8px;
     left: 8px;
     padding: 3px 8px;
     font-size: 9px;
   }
-
+  
   .readMoreBtn {
     padding: 5px 14px;
     font-size: 11px;
     gap: 6px;
   }
-
+  
   .btnIcon {
     width: 14px;
     height: 14px;
   }
-
+  
   .linkWrapper {
     margin-top: 6px;
   }
-
+  
   .loadMoreBtn {
     padding: 8px 20px;
     font-size: 13px;
   }
-
+  
   .spinner {
     width: 40px;
     height: 40px;
   }
-
+  
   .loader p {
     font-size: 14px;
   }
@@ -495,20 +495,20 @@
   .title {
     font-size: 24px;
   }
-
+  
   .li {
     padding: 5px 12px;
     font-size: 11px;
   }
-
+  
   .name {
     font-size: 16px;
   }
-
+  
   .description {
     font-size: 11px;
   }
-
+  
   .readMoreBtn {
     padding: 4px 12px;
     font-size: 10px;
@@ -520,15 +520,15 @@
   .projectsGrid {
     margin-top: 50px;
   }
-
+  
   .projectColumn {
     margin-bottom: 40px;
   }
-
+  
   .name {
     font-size: 28px;
   }
-
+  
   .description {
     font-size: 15px;
   }
@@ -539,34 +539,34 @@
   .projectCard:hover {
     transform: none;
   }
-
+  
   .imageContainer:hover .projectImage {
     transform: none;
   }
-
+  
   .li:hover {
     transform: none;
   }
-
+  
   .readMoreBtn:hover {
     transform: none;
   }
-
+  
   .loadMoreBtn:hover {
     transform: none;
   }
-
+  
   /* Active states for touch */
   .li:active {
     background: #C4E1F0;
     transform: scale(0.98);
   }
-
+  
   .readMoreBtn:active {
     background: #0C4A6E;
     color: white;
   }
-
+  
   .loadMoreBtn:active {
     background: #0C4A6E;
     color: white;
@@ -575,9 +575,9 @@
 
 /* Reduced Motion Preference */
 @media (prefers-reduced-motion: reduce) {
-  .projectsWrapper *,
-  .projectsWrapper *::before,
-  .projectsWrapper *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -590,18 +590,18 @@
   .projectsWrapper {
     padding: 20px 0;
   }
-
+  
   .categoryBadge {
     background: #0C4A6E;
     print-color-adjust: exact;
   }
-
+  
   .readMoreBtn,
   .loadMoreBtn {
     border: 1px solid #0C4A6E;
     print-color-adjust: exact;
   }
-
+  
   .li,
   .readMoreBtn,
   .loadMoreBtn {
@@ -735,34 +735,34 @@
   .paginationWrapper {
     margin-top: 40px;
   }
-
+  
   .pagination {
     gap: 8px;
   }
-
+  
   .pageBtn {
     padding: 8px 16px;
     font-size: 13px;
   }
-
+  
   .pageBtn span {
     display: none;
   }
-
+  
   .pageBtn svg {
     margin: 0;
   }
-
+  
   .prevBtn, .nextBtn {
     padding: 8px 12px;
   }
-
+  
   .pageNumber {
     min-width: 36px;
     height: 36px;
     font-size: 13px;
   }
-
+  
   .pageInfo {
     font-size: 12px;
   }
@@ -772,21 +772,21 @@
   .paginationWrapper {
     margin-top: 30px;
   }
-
+  
   .pageNumbers {
     gap: 6px;
   }
-
+  
   .pageNumber {
     min-width: 32px;
     height: 32px;
     font-size: 12px;
   }
-
+  
   .prevBtn, .nextBtn {
     padding: 6px 10px;
   }
-
+  
   .prevBtn svg,
   .nextBtn svg {
     width: 16px;
@@ -799,18 +799,18 @@
   .pageBtn:hover:not(.disabled) {
     transform: none;
   }
-
+  
   .pageNumber:hover:not(.dots) {
     transform: none;
   }
-
+  
   .pageBtn:active:not(.disabled) {
     background: #0C4A6E;
     border-color: #0C4A6E;
     color: white;
     transform: scale(0.98);
   }
-
+  
   .pageNumber:active:not(.dots) {
     background: #E5EFF6;
     transform: scale(0.98);
@@ -920,12 +920,12 @@
   .categoryWrapperDesktop {
     display: none;
   }
-
+  
   /* Show mobile dropdown on mobile */
   .categoryWrapperMobile {
     display: block;
   }
-
+  
   .blueBox {
     margin-bottom: 10px;
   }
@@ -935,12 +935,12 @@
   .categoryWrapperMobile {
     max-width: 250px;
   }
-
+  
   .dropdownButton {
     padding: 10px 16px;
     font-size: 13px;
   }
-
+  
   .dropdownItem {
     padding: 8px 16px;
     font-size: 13px;
@@ -951,12 +951,12 @@
   .categoryWrapperMobile {
     max-width: 220px;
   }
-
+  
   .dropdownButton {
     padding: 8px 14px;
     font-size: 12px;
   }
-
+  
   .dropdownItem {
     padding: 8px 14px;
     font-size: 12px;
