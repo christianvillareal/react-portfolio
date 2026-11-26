@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-portfolio/static/css/main.a7bc7f8f.css",
-    "main.js": "/react-portfolio/static/js/main.ce855e4c.js",
+    "main.css": "/react-portfolio/static/css/main.c46321c8.css",
+    "main.js": "/react-portfolio/static/js/main.2ad692fc.js",
     "static/js/510.b8ecb02f.chunk.js": "/react-portfolio/static/js/510.b8ecb02f.chunk.js",
     "static/js/560.fc8016b7.chunk.js": "/react-portfolio/static/js/560.fc8016b7.chunk.js",
     "static/js/453.9415623e.chunk.js": "/react-portfolio/static/js/453.9415623e.chunk.js",
@@ -12,11 +12,9 @@
     "static/js/608.68c58d58.chunk.js": "/react-portfolio/static/js/608.68c58d58.chunk.js",
     "static/js/550.c947cbc6.chunk.js": "/react-portfolio/static/js/550.c947cbc6.chunk.js",
     "static/js/290.8c77e97d.chunk.js": "/react-portfolio/static/js/290.8c77e97d.chunk.js",
-    "static/media/gradient2.png": "/react-portfolio/static/media/gradient2.8cf3bda03bfe59a414ae.png",
-    "static/media/contact-bg.png": "/react-portfolio/static/media/contact-bg.d0906ba4c8d1e3d05ba9.png",
     "index.html": "/react-portfolio/index.html",
-    "main.a7bc7f8f.css.map": "/react-portfolio/static/css/main.a7bc7f8f.css.map",
-    "main.ce855e4c.js.map": "/react-portfolio/static/js/main.ce855e4c.js.map",
+    "main.c46321c8.css.map": "/react-portfolio/static/css/main.c46321c8.css.map",
+    "main.2ad692fc.js.map": "/react-portfolio/static/js/main.2ad692fc.js.map",
     "510.b8ecb02f.chunk.js.map": "/react-portfolio/static/js/510.b8ecb02f.chunk.js.map",
     "560.fc8016b7.chunk.js.map": "/react-portfolio/static/js/560.fc8016b7.chunk.js.map",
     "453.9415623e.chunk.js.map": "/react-portfolio/static/js/453.9415623e.chunk.js.map",
@@ -29,7 +27,7 @@
     "290.8c77e97d.chunk.js.map": "/react-portfolio/static/js/290.8c77e97d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a7bc7f8f.css",
-    "static/js/main.ce855e4c.js"
+    "static/css/main.c46321c8.css",
+    "static/js/main.2ad692fc.js"
   ]
 }
