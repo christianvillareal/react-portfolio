@@ -3,12 +3,9 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { CContainer, CRow, CCol } from '@coreui/react';
 import Link from 'next/link';
 import { plainText } from '../lib/site';
-import dynamic from 'next/dynamic';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-const Particles = dynamic(() => import('react-tsparticles'), {ssr:false});
-import { loadSlim } from 'tsparticles-slim';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
 import styles from '../css/ProjectDetails.module.css';
@@ -19,6 +16,87 @@ import SEO from './SEO';
 
 
 
+const particleOptions = {
+  fullScreen: false,
+  background: {
+    color: {
+      value: 'transparent',
+    },
+  },
+  fpsLimit: 60,
+  particles: {
+    color: {
+      value: '#3b82f6',
+    },
+    links: {
+      color: '#3b82f6',
+      distance: 150,
+      enable: true,
+      opacity: 0.2,
+      width: 1,
+    },
+    move: {
+      enable: true,
+      speed: 1,
+      direction: 'none',
+      random: false,
+      straight: false,
+      outModes: {
+        default: 'bounce',
+      },
+    },
+    number: {
+      density: {
+        enable: true,
+      },
+      value: 80,
+    },
+    opacity: {
+      value: 0.5,
+    },
+    shape: {
+      type: 'circle',
+    },
+    size: {
+      value: { min: 1, max: 3 },
+    },
+  },
+  detectRetina: true,
+};
+
+let particleEngine;
+let nextParticleId = 0;
+
+function Particles({ options }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    const id = 'project-particles-' + nextParticleId++;
+    let disposed = false;
+    let animation;
+
+    particleEngine ??= Promise.all([import('@tsparticles/engine'), import('@tsparticles/slim')])
+      .then(async ([{ tsParticles }, { loadSlim }]) => {
+        await loadSlim(tsParticles);
+        return tsParticles;
+      });
+
+    particleEngine.then(async engine => {
+      if (disposed) return;
+      animation = await engine.load({ id, element, options });
+      if (disposed) animation?.destroy();
+    }).catch(error => console.error('Unable to start project particles.', error));
+
+    return () => {
+      disposed = true;
+      animation?.destroy();
+    };
+  }, [options]);
+
+  return <div ref={ref} className={styles.particlesWrapper} aria-hidden="true" />;
+}
+
 function ProjectDetails({ project }) {
   const id = project.id;
   const swiperRef = useRef(null);
@@ -27,11 +105,6 @@ function ProjectDetails({ project }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const imageCount = project?.images?.length || 0;
-
-  // Initialize tsparticles with slim version
-  const particlesInit = async (engine) => {
-    await loadSlim(engine);
-  };
 
   // Custom rich text renderer options
   const richTextOptions = {
@@ -124,59 +197,7 @@ function ProjectDetails({ project }) {
     <div className={styles.projectDetails}>
       {/* Hero Section with Particles - ONLY in header */}
       <div className={styles.heroSection}>
-        <div className={styles.particlesWrapper}>
-          <Particles
-            id="tsparticles"
-            init={particlesInit}
-            options={{
-              background: {
-                color: {
-                  value: 'transparent',
-                },
-              },
-              fpsLimit: 60,
-              particles: {
-                color: {
-                  value: '#3b82f6',
-                },
-                links: {
-                  color: '#3b82f6',
-                  distance: 150,
-                  enable: true,
-                  opacity: 0.2,
-                  width: 1,
-                },
-                move: {
-                  enable: true,
-                  speed: 1,
-                  direction: 'none',
-                  random: false,
-                  straight: false,
-                  outModes: {
-                    default: 'bounce',
-                  },
-                },
-                number: {
-                  density: {
-                    enable: true,
-                    area: 800,
-                  },
-                  value: 80,
-                },
-                opacity: {
-                  value: 0.5,
-                },
-                shape: {
-                  type: 'circle',
-                },
-                size: {
-                  value: { min: 1, max: 3 },
-                },
-              },
-              detectRetina: true,
-            }}
-          />
-        </div>
+        <Particles options={particleOptions} />
 
         <div className={styles.heroOverlay}>
           <CContainer>
